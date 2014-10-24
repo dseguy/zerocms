@@ -3,6 +3,7 @@
 // Project Site www.aas9.in/zerocms
 // Created March 2014
 
+//function to trim text
 function trim_body($text, $max_length = 500, $tail = '...') {
     $tail_len = strlen($tail);
     if (strlen($text) > $max_length) {
@@ -19,6 +20,7 @@ function trim_body($text, $max_length = 500, $tail = '...') {
     return $text;
 }
 
+//function to view article
 function output_story($dbx, $article_id, $preview_only = FALSE) {
     if (empty($article_id)) {
         return;
@@ -55,6 +57,7 @@ function output_story($dbx, $article_id, $preview_only = FALSE) {
     mysql_free_result($result);
 }
 
+//function to show comments
 function show_comments($dbx, $article_id, $show_link = TRUE) {
     if (empty($article_id)) {
         return;

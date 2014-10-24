@@ -2,7 +2,7 @@
 // (c)Perez Karjee(www.aas9.in)
 // Project Site www.aas9.in/zerocms
 // Created March 2014
-require 'db.kate.php';
+require '../includes/db.kate.php';
 $dbx = mysql_connect(MYSQL_HOST, MYSQL_USER, MYSQL_PASSWORD) or
     die ('Fuck! Unable to connect.');
 
@@ -28,7 +28,7 @@ if (empty($user_id)) {
     mysql_free_result($result);
 }
 
-include 'header.kate.php';
+include '../includes/header.kate.php';
 
 if (empty($user_id)) {
     echo '<h1>Create Account</h1>';
@@ -107,5 +107,5 @@ if (empty($user_id)) {
  </table>
 </form>
 <?php
-include 'footer.kate.php';
+include '../includes/footer.kate.php';
 ?>

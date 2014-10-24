@@ -4,7 +4,7 @@
 // Github http://github.com/pcx1256/zerocms
 // Created March 2014
 
-require 'db.kate.php';
+require 'includes/db.kate.php';
 
 $dbx = mysql_connect(MYSQL_HOST, MYSQL_USER, MYSQL_PASSWORD) or
 	die ('Fuck! unable to connect.');

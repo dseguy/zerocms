@@ -2,8 +2,8 @@
 // (c)Perez Karjee(www.aas9.in)
 // Project Site www.aas9.in/zerocms
 // Created March 2014
-require_once 'db.kate.php';
-require_once 'zero_http_functions.kate.php';
+require_once '../includes/db.kate.php';
+require_once '../includes/zero_http_functions.kate.php';
 session_start();   
   $dbx = mysql_connect(MYSQL_HOST,MYSQL_USER,MYSQL_PASSWORD) or
       die ('Fuck! Unable to connect.');
@@ -26,7 +26,7 @@ session_start();
                     "' . mysql_real_escape_string($article_text, $dbx) . '")';
             mysql_query($sql, $dbx) or die(mysql_error($dbx));
         }
-        redirect('index.php');
+        redirect('../index.php');
         break; 
 
     case 'Edit':
@@ -118,9 +118,9 @@ session_start();
         break;
 
     default:
-        redirect('index.php');
+        redirect('../index.php');
     }
 } else {
-    redirect('index.php');
+    redirect('../index.php');
 }
 ?>

@@ -3,10 +3,13 @@
 // Project Site www.aas9.in/zerocms
 // Created March 2014
 ?>
+<?php
+include 'config.kate.php';
+?>
 <html>
 <head>
 <title>ZeroCMS</title>
-<link rel="stylesheet" href="css/style.css" type="text/css">
+<link rel="stylesheet" href="<?php echo $site;?>/css/style.css" type="text/css">
 </head>
 <body>
 <h1>ZeroCMS</h1>
@@ -17,7 +20,7 @@ if(isset($_SESSION['name'])){
 ?>
 </div>
 <div id="navright">
-<form method="get" action="zero_search.php">
+<form method="get" action="<?php echo $site;?>/views/zero_search.php">
 <div>
 <label for="search">Search</label>
 <?php
@@ -33,21 +36,21 @@ if(isset($_GET['keywords'])){
 </form>
 </div>
 <div id='navigation'>
-<a href="index.php">Articles</a>
+<a href="<?php echo $site;?>index.php">Articles</a>
 <?php
 if(isset($_SESSION['user_id'])){
-	echo ' | <a href="zero_compose.php">Compose</a>';
+	echo ' | <a href=" .'<?php echo $site;?>'. /views/zero_compose.php">Compose</a>';
 	if($_SESSION['access_level'] > 1){
-	echo ' | <a href="zero_pending.php">Review</a>';
+	echo ' | <a href=" .'<?php echo $site;?>'. /views/zero_pending.php">Review</a>';
 	}
 if($_SESSION['access_level'] > 2){
-echo ' |<a href="zero_admin.php">Admin</a>';
+echo ' |<a href=" .'<?php echo $site;?>'. /views/zero_admin.php">Admin</a>';
 }
-echo ' | <a href="zero_cpanel.php">Kontrol Panel</a>';
-echo ' | <a href="zero_transact_user.php?action=Logout">Logout</a>';
+echo ' | <a href=" .'<?php echo $site;?>'. /views/zero_cpanel.php">Kontrol Panel</a>';
+echo ' | <a href=" .'<?php echo $site;?>'. /views/zero_transact_user.php?action=Logout">Logout</a>';
 }
 else {
-	echo ' | <a href="zero_login.php">Login</a>';
+	echo ' | <a href=" .'<?php echo $site;?>'. /views/zero_login.php">Login</a>';
 }
 	?>
 	</div>
