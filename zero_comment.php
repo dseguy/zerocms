@@ -2,9 +2,9 @@
 // (c)Perez Karjee(www.aas9.in)
 // Project Site www.aas9.in/zerocms
 // Created March 2014
-require '../includes/db.kate.php';
-require '../includes/functions.kate.php';
-include '../includes/header.kate.php';
+require 'db.kate.php';
+require 'functions.kate.php';
+include 'header.kate.php';
 
 $dbx = mysql_connect(MYSQL_HOST, MYSQL_USER, MYSQL_PASSWORD)
 	or die('Fuck!, Unable To Connect.');
@@ -25,5 +25,5 @@ output_story($dbx, $article_id);
 </form>
 <?php
 show_comments($dbx, $article_id, FALSE);
-include '../includes/footer.kate.php';
+include 'footer.kate.php';
 ?>

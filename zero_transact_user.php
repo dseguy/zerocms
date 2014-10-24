@@ -2,8 +2,8 @@
 // (c)Perez Karjee(www.aas9.in)
 // Project Site www.aas9.in/zerocms
 // Created March 2014
-require_once '../includes/db.kate.php';
-require_once '../includes/zero_http_functions.kate.php';
+require_once 'db.kate.php';
+require_once 'zero_http_functions.kate.php';
 
 $dbx = mysql_connect(MYSQL_HOST, MYSQL_USER, MYSQL_PASSWORD) or
     die ('Unable to connect. Check your connection parameters.');
@@ -34,14 +34,14 @@ if (isset($_REQUEST['action'])) {
             $_SESSION['name'] = $name;
         }
         mysql_free_result($result);
-        redirect('../index.php');
+        redirect('index.php');
         break;
 
     case 'Logout':
         session_start();
         session_unset();
         session_destroy();
-        redirect('../index.php');
+        redirect('index.php');
         break;
 
     case 'Create Account':
@@ -64,7 +64,7 @@ if (isset($_REQUEST['action'])) {
             $_SESSION['access_level'] = 1;
             $_SESSION['name'] = $name;
         }
-        redirect('../index.php');
+        redirect('index.php');
         break;
 
     case 'Modify Account':
@@ -124,9 +124,9 @@ if (isset($_REQUEST['action'])) {
         redirect('zero_cpanel.php');
         break;
     default:
-        redirect('../index.php');
+        redirect('index.php');
     }
 } else {
-    redirect('../index.php');
+    redirect('index.php');
 }
 ?>

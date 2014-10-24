@@ -2,7 +2,7 @@
 // (c)Perez Karjee(www.aas9.in)
 // Project Site www.aas9.in/zerocms
 // Created March 2014
-include '../includes/header.kate.php';
+include 'header.kate.php';
 ?>
 <h1>Recover Password</h1>
 <p>Forgot Password ? Enter Your Email Here, we'll send you a new one</p>
@@ -13,5 +13,5 @@ include '../includes/header.kate.php';
 		<input type="submit" name="action" value="Recover Password"/>
 	</div>
 </form>
-<?php include '../includes/footer.kate.php';
+<?php include 'footer.kate.php';
 ?>

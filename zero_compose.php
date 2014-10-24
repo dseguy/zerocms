@@ -2,8 +2,8 @@
 // (c)Perez Karjee(www.aas9.in)
 // Project Site www.aas9.in/zerocms
 // Created March 2014
-require '../includes/db.kate.php';
-include '../includes/header.kate.php';
+require 'db.kate.php';
+include 'header.kate.php';
 
 $dbx = mysql_connect(MYSQL_HOST, MYSQL_USER, MYSQL_PASSWORD) or
     die ('Unable to connect. Check your connection parameters.');
@@ -64,5 +64,5 @@ if (empty($article_id)) {
  </table>
 </form>
 <?php
-require_once '../includes/footer.kate.php';
+require_once 'footer.kate.php';
 ?>
