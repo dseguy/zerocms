@@ -1,0 +1,5 @@
+ErrorDocument 404 /error_pages/404.php
+ErrorDocument 500 /error_pages/500.php
+
+RewriteEngine on
+RewriteRule ^(.*)\.si$ $1.php [nc]
