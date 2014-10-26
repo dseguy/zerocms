@@ -2,8 +2,8 @@
 // (c)Perez Karjee(www.aas9.in)
 // Project Site www.aas9.in/zerocms
 // Created March 2014
-require 'db.kate.php';
-include 'header.kate.php';
+require '../includes/db.kate.php';
+include '../includes/header.kate.php';
 
 $dbx = mysql_connect(MYSQL_HOST, MYSQL_USER, MYSQL_PASSWORD)
 	or die('Fuck!, unable to connect.');
@@ -43,7 +43,7 @@ for($i = 1; $i <= $limit; $i++){
 			if($_SESSION['user_id'] == $row['user_id']){
 				echo '<li>' . htmlspecialchars($row['name']) . '</li>';
 				}else{
-					echo '<li><a href="zero_user_account.php?user_id=' . $row['user_id'] . '">' . htmlspecialchars($row['name']) . 
+					echo '<li><a href="'.$site.'/views/zero_user_account.php?user_id=' . $row['user_id'] . '">' . htmlspecialchars($row['name']) . 
 					'</a></li>';
 					}
 				}
@@ -51,5 +51,5 @@ for($i = 1; $i <= $limit; $i++){
 	}
 	mysql_free_result($result);
 }
-require 'footer.kate.php';
+require '../includes/footer.kate.php';
 ?>

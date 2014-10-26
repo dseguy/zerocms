@@ -2,8 +2,9 @@
 // (c)Perez Karjee(www.aas9.in)
 // Project Site www.aas9.in/zerocms
 // Created March 2014
-require_once 'db.kate.php';
-require_once 'zero_http_functions.kate.php';
+require_once '../includes/db.kate.php';
+require_once '../includes/config.kate.php';
+require_once '../includes/zero_http_functions.kate.php';
 session_start();   
   $dbx = mysql_connect(MYSQL_HOST,MYSQL_USER,MYSQL_PASSWORD) or
       die ('Fuck! Unable to connect.');
@@ -12,6 +13,7 @@ session_start();
   {
   	switch ($_REQUEST['action'])
   	{
+	//submit article
   		case 'Submit New Article':
   		     $title = (isset($_POST['title'])) ? $_POST['title'] : '';
              $article_text = (isset($_POST['article_text'])) ? $_POST['article_text']: '';
@@ -26,13 +28,14 @@ session_start();
                     "' . mysql_real_escape_string($article_text, $dbx) . '")';
             mysql_query($sql, $dbx) or die(mysql_error($dbx));
         }
-        redirect('index.php');
+        redirect('../index.php');
         break; 
-
+	//edit article
     case 'Edit':
-        redirect('zero_compose.php?action=edit&article_id=' . $_POST['article_id']);
+        redirect(''.$site.'/views/zero_compose.php?action=edit&article_id=' . $_POST['article_id']);
         break;
-
+		
+	//save article
     case 'Save Changes':
         $article_id = (isset($_POST['article_id'])) ? $_POST['article_id'] : '';
         $user_id = (isset($_POST['user_id'])) ? $_POST['user_id'] : '';
@@ -53,12 +56,13 @@ session_start();
             mysql_query($sql, $dbx) or die(mysql_error($dbx));
         }
         if (empty($user_id)) {
-            redirect('zero_pending.php');
+            redirect(''.$site.'/views/zero_pending.php');
         } else {
-            redirect('zero_cpanel.php');
+            redirect(''.$site.'/views/zero_cpanel.php');
         }
         break;
-
+	
+	//publish article
     case 'Publish':
         $article_id = (isset($_POST['article_id'])) ? $_POST['article_id'] : '';
         if (!empty($article_id)) {
@@ -69,9 +73,10 @@ session_start();
                     article_id = ' . $article_id;
             mysql_query($sql, $dbx) or die(mysql_error($dbx));
         }
-        redirect('zero_pending.php');
+        redirect(''.$site.'/views/zero_pending.php');
         break;
-
+	
+	//retract article
     case 'Retract':
         $article_id = (isset($_POST['article_id'])) ? $_POST['article_id'] : '';
         if (!empty($article_id)) {
@@ -82,9 +87,10 @@ session_start();
                     article_id = ' . $article_id;
             mysql_query($sql, $dbx) or die(mysql_error($dbx));
         }
-        redirect('zero_pending.php');
+        redirect(''.$site.'/views/zero_pending.php');
         break;
 
+	//delete article
     case 'Delete':
         $article_id = (isset($_POST['article_id'])) ? $_POST['article_id'] : '';
         if (!empty($article_id)) {
@@ -96,9 +102,10 @@ session_start();
                     is_published = FALSE';
             mysql_query($sql, $dbx) or die(mysql_error($dbx));
         }
-        redirect('zero_pending.php');
+        redirect(''.$site.'/views/zero_pending.php');
         break;
 
+	//submit comment
     case 'Submit Comment':
         $article_id = (isset($_POST['article_id'])) ? $_POST['article_id'] : '';
         $comment_text = (isset($_POST['comment_text'])) ?
@@ -114,13 +121,13 @@ session_start();
                     "' . mysql_real_escape_string($comment_text, $dbx) . '")';
             mysql_query($sql, $dbx) or die(mysql_error($dbx));
         }
-        redirect('zero_view_article.php?article_id=' . $article_id);
+        redirect(''.$site.'/views/zero_view_article.php?article_id=' . $article_id);
         break;
 
     default:
-        redirect('index.php');
+        redirect('../index.php');
     }
 } else {
-    redirect('index.php');
+    redirect('../index.php');
 }
 ?>

@@ -2,9 +2,9 @@
 // (c)Perez Karjee(www.aas9.in)
 // Project Site www.aas9.in/zerocms
 // Created March 2014
-require 'db.kate.php';
-require 'functions.kate.php';
-include 'header.kate.php';
+require '../includes/db.kate.php';
+require '../includes/functions.kate.php';
+include '../includes/header.kate.php';
 
 $dbx = mysql_connect(MYSQL_HOST, MYSQL_USER, MYSQL_PASSWORD) or
     die ('Unable to connect. Check your connection parameters.');
@@ -60,7 +60,7 @@ if (mysql_num_rows($result) == 0) {
 } else {
     echo '<ul>';
     while ($row = mysql_fetch_array($result)) {
-        echo '<li><a href="zero_review_article.php?article_id=' .
+        echo '<li><a href="'.$site.'/views/zero_review_article.php?article_id=' .
             $row['article_id'] . '">' . htmlspecialchars($row['title']) .
             '</a> (submitted ' . date('F j, Y', $row['submit_date']) .
             ')</li>';
@@ -87,7 +87,7 @@ if (mysql_num_rows($result) == 0) {
 } else {
     echo '<ul>';
     while ($row = mysql_fetch_array($result)) {
-        echo '<li><a href="zero_review_article.php?article_id=' .
+        echo '<li><a href="'.$site.'/viewszero_review_article.php?article_id=' .
             $row['article_id'] . '">' . htmlspecialchars($row['title']) .
             '</a> (published ' . date('F j, Y', $row['publish_date']) .
             ')</li>';
@@ -96,5 +96,5 @@ if (mysql_num_rows($result) == 0) {
 }
 mysql_free_result($result);
 
-include 'footer.kate.php';
+include '../includes/footer.kate.php';
 ?>

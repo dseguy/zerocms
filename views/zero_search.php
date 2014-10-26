@@ -2,14 +2,14 @@
 // (c)Perez Karjee(www.aas9.in)
 // Project Site www.aas9.in/zerocms
 // Created March 2014
-require 'db.kate.php';
-require 'functions.kate.php';
+require '../includes/db.kate.php';
+require '../includes/functions.kate.php';
 
 $dbx = mysql_connect(MYSQL_HOST, MYSQL_USER, MYSQL_PASSWORD)
 	or die('Fuck!, Unable To Connect.');
 	
 mysql_select_db(MYSQL_DB, $dbx) or die(mysql_error($dbx));
-include 'header.kate.php';
+include '../header.kate.php';
 
 $search = (isset($_GET['search'])) ? $_GET['search'] : '';
 
@@ -35,5 +35,5 @@ if(mysql_num_rows($result) == 0){
 	}
 }
 mysql_free_result($result);
-include 'footer.kate.php';
+include '../includes/footer.kate.php';
 ?>

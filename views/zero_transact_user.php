@@ -2,8 +2,8 @@
 // (c)Perez Karjee(www.aas9.in)
 // Project Site www.aas9.in/zerocms
 // Created March 2014
-require_once 'db.kate.php';
-require_once 'zero_http_functions.kate.php';
+require_once '../includes/db.kate.php';
+require_once '../includes/zero_http_functions.kate.php';
 
 $dbx = mysql_connect(MYSQL_HOST, MYSQL_USER, MYSQL_PASSWORD) or
     die ('Unable to connect. Check your connection parameters.');
@@ -34,23 +34,29 @@ if (isset($_REQUEST['action'])) {
             $_SESSION['name'] = $name;
         }
         mysql_free_result($result);
-        redirect('index.php');
+        redirect('../index.php');
         break;
 
     case 'Logout':
         session_start();
         session_unset();
         session_destroy();
-        redirect('index.php');
+        redirect('../index.php');
         break;
 
+		//if (filter_var($newslettermail, FILTER_VALIDATE_EMAIL)) {
+//$query = "INSERT INTO newslettermail(email)VALUES('$newslettermail')"; 
+//}
     case 'Create Account':
         $name = (isset($_POST['name'])) ? $_POST['name'] : '';
         $email = (isset($_POST['email'])) ? $_POST['email'] : '';
         $password_1 = (isset($_POST['password_1'])) ? $_POST['password_1'] : '';
         $password_2 = (isset($_POST['password_2'])) ? $_POST['password_2'] : '';
         $password = ($password_1 == $password_2) ? $password_1 : '';
-        if (!empty($name) && !empty($email) && !empty($password)) {
+		//check if not empty and validate email
+		if(!empty($name) && !empty($email) && !empty($password) && filter_var($email, FILTER_VALIDATE_EMAIL)
+		&& preg_match('/^[A-Za-z0-9]{1,255}$/', $name) && preg_match('/^[A-Za-z0-9]{6,32}$/', $password))
+		{
             $sql = 'INSERT INTO zero_users
                     (email, password, name)
                 VALUES
@@ -64,7 +70,7 @@ if (isset($_REQUEST['action'])) {
             $_SESSION['access_level'] = 1;
             $_SESSION['name'] = $name;
         }
-        redirect('index.php');
+        redirect('../index.php');
         break;
 
     case 'Modify Account':
@@ -73,8 +79,10 @@ if (isset($_REQUEST['action'])) {
         $name = (isset($_POST['name'])) ? $_POST['name'] : '';
         $access_level = (isset($_POST['access_level'])) ? $_POST['access_level']
             : '';
+				//check if not empty and validate email
         if (!empty($user_id) && !empty($name) && !empty($email) &&
-            !empty($access_level) && !empty($user_id)) {
+            !empty($access_level) && filter_var($email, FILTER_VALIDATE_EMAIL) && preg_match('/^[A-Za-z0-9]{1,255}$/', $name))
+			{
             $sql = 'UPDATE `zero_users` SET
                     email = "' . mysql_real_escape_string($email, $dbx) . '",
                     name = "' . mysql_real_escape_string($name, $dbx) . '",
@@ -86,7 +94,7 @@ if (isset($_REQUEST['action'])) {
                     
             mysql_query($sql, $dbx) or die(mysql_error($dbx));
         }
-        redirect('zero_admin.php');
+        redirect(''.$site.'/views/zero_admin.php');
         break;
 
     case 'Recover Password':
@@ -105,14 +113,16 @@ if (isset($_REQUEST['action'])) {
             }
             mysql_free_result($result);
         }
-        redirect('zero_login.php');
+        redirect(''.$site.'/views/zero_login.php');
         break;
 
     case 'Change my info':
         session_start();
         $email = (isset($_POST['email'])) ? $_POST['email'] : '';
         $name = (isset($_POST['name'])) ? $_POST['name'] : '';
-        if (!empty($name) && !empty($email) && !empty($_SESSION['user_id']))
+		//check if not empty and validate email
+        if (!empty($name) && !empty($email) && !empty($_SESSION['user_id']) && filter_var($email, FILTER_VALIDATE_EMAIL)
+		&& preg_match('/^[A-Za-z0-9]{1,255}$/', $name))
         {
             $sql = 'UPDATE zero_users SET
                     email = "' . mysql_real_escape_string($email, $dbx) . '",
@@ -121,12 +131,12 @@ if (isset($_REQUEST['action'])) {
                     user_id = ' . $_SESSION['user_id'];
             mysql_query($sql, $dbx) or die(mysql_error($dbx));
         }
-        redirect('zero_cpanel.php');
+        redirect(''.$site.'/views/zero_cpanel.php');
         break;
     default:
-        redirect('index.php');
+        redirect('../index.php');
     }
 } else {
-    redirect('index.php');
+    redirect('../index.php');
 }
 ?>

@@ -2,7 +2,7 @@
 // (c)Perez Karjee(www.aas9.in)
 // Project Site www.aas9.in/zerocms
 // Created March 2014
-include 'header.kate.php';
+include '../includes/header.kate.php';
 ?>
 <h1>Member Login</h1>
 <form method="post" action="zero_transact_user.php">
@@ -23,5 +23,5 @@ include 'header.kate.php';
 </form>
 <p>Not A Member Yet ? <a href="zero_user_account.php">Create A New Account</a></p>
 <p><a href="zero_forgot_password.php">Forgot Your Password ?</a></p>
-<?php include 'footer.kate.php';
+<?php include '../includes/footer.kate.php';
 ?>
