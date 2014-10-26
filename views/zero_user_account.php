@@ -41,11 +41,11 @@ if (empty($user_id)) {
   <tr>
    <td><label for="name">Full Name:</label></td>
    <td><input type="text" id="name" name="name" maxlength="100"
-     value="<?php echo htmlspecialchars($name); ?>"/></td>
+     value="<?php echo htmlentities($name); ?>"/></td>
   </tr><tr>
    <td><label for="email">Email Address:</label></td>
    <td><input type="text" id="email" name="email" maxlength="100"
-     value="<?php echo htmlspecialchars($email); ?>"/></td>
+     value="<?php echo htmlentities($email); ?>"/></td>
   </tr>
 <?php
 
