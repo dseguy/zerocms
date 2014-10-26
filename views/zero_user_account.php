@@ -78,7 +78,7 @@ if (isset($_SESSION['access_level']) && $_SESSION['access_level'] == 3)
 if (empty($user_id)) {
 ?>
   <tr>
-   <td><label for="password_1">Password:</label></td>
+   <td><label for="password_1">Password:(6-32 Characters)</label></td>
    <td><input type="password" id="password_1" name="password_1" maxlength="50"/>
    </td>
   </tr><tr>
