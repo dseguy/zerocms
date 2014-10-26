@@ -13,6 +13,7 @@ session_start();
   {
   	switch ($_REQUEST['action'])
   	{
+	//submit article
   		case 'Submit New Article':
   		     $title = (isset($_POST['title'])) ? $_POST['title'] : '';
              $article_text = (isset($_POST['article_text'])) ? $_POST['article_text']: '';
@@ -29,11 +30,12 @@ session_start();
         }
         redirect('../index.php');
         break; 
-
+	//edit article
     case 'Edit':
         redirect(''.$site.'/views/zero_compose.php?action=edit&article_id=' . $_POST['article_id']);
         break;
-
+		
+	//save article
     case 'Save Changes':
         $article_id = (isset($_POST['article_id'])) ? $_POST['article_id'] : '';
         $user_id = (isset($_POST['user_id'])) ? $_POST['user_id'] : '';
@@ -59,7 +61,8 @@ session_start();
             redirect(''.$site.'/views/zero_cpanel.php');
         }
         break;
-
+	
+	//publish article
     case 'Publish':
         $article_id = (isset($_POST['article_id'])) ? $_POST['article_id'] : '';
         if (!empty($article_id)) {
@@ -72,7 +75,8 @@ session_start();
         }
         redirect(''.$site.'/views/zero_pending.php');
         break;
-
+	
+	//retract article
     case 'Retract':
         $article_id = (isset($_POST['article_id'])) ? $_POST['article_id'] : '';
         if (!empty($article_id)) {
@@ -86,6 +90,7 @@ session_start();
         redirect(''.$site.'/views/zero_pending.php');
         break;
 
+	//delete article
     case 'Delete':
         $article_id = (isset($_POST['article_id'])) ? $_POST['article_id'] : '';
         if (!empty($article_id)) {
@@ -100,6 +105,7 @@ session_start();
         redirect(''.$site.'/views/zero_pending.php');
         break;
 
+	//submit comment
     case 'Submit Comment':
         $article_id = (isset($_POST['article_id'])) ? $_POST['article_id'] : '';
         $comment_text = (isset($_POST['comment_text'])) ?
