@@ -3,6 +3,7 @@
 // Project Site www.aas9.in/zerocms
 // Created March 2014
 require_once '../includes/db.kate.php';
+require_once '../includes/config.kate.php';
 require_once '../includes/zero_http_functions.kate.php';
 session_start();   
   $dbx = mysql_connect(MYSQL_HOST,MYSQL_USER,MYSQL_PASSWORD) or
@@ -30,7 +31,7 @@ session_start();
         break; 
 
     case 'Edit':
-        redirect('zero_compose.php?action=edit&article_id=' . $_POST['article_id']);
+        redirect(''.$site.'/views/zero_compose.php?action=edit&article_id=' . $_POST['article_id']);
         break;
 
     case 'Save Changes':
@@ -53,9 +54,9 @@ session_start();
             mysql_query($sql, $dbx) or die(mysql_error($dbx));
         }
         if (empty($user_id)) {
-            redirect('zero_pending.php');
+            redirect(''.$site.'/views/zero_pending.php');
         } else {
-            redirect('zero_cpanel.php');
+            redirect(''.$site.'/views/zero_cpanel.php');
         }
         break;
 
@@ -69,7 +70,7 @@ session_start();
                     article_id = ' . $article_id;
             mysql_query($sql, $dbx) or die(mysql_error($dbx));
         }
-        redirect('zero_pending.php');
+        redirect(''.$site.'/views/zero_pending.php');
         break;
 
     case 'Retract':
@@ -82,7 +83,7 @@ session_start();
                     article_id = ' . $article_id;
             mysql_query($sql, $dbx) or die(mysql_error($dbx));
         }
-        redirect('zero_pending.php');
+        redirect(''.$site.'/views/zero_pending.php');
         break;
 
     case 'Delete':
@@ -96,7 +97,7 @@ session_start();
                     is_published = FALSE';
             mysql_query($sql, $dbx) or die(mysql_error($dbx));
         }
-        redirect('zero_pending.php');
+        redirect(''.$site.'/views/zero_pending.php');
         break;
 
     case 'Submit Comment':
@@ -114,7 +115,7 @@ session_start();
                     "' . mysql_real_escape_string($comment_text, $dbx) . '")';
             mysql_query($sql, $dbx) or die(mysql_error($dbx));
         }
-        redirect('zero_view_article.php?article_id=' . $article_id);
+        redirect(''.$site.'/views/zero_view_article.php?article_id=' . $article_id);
         break;
 
     default:

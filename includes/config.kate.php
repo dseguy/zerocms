@@ -4,8 +4,12 @@
 // Created March 2014
 
 // if on a shared server
-$site = 'zerocms-perezkarjee.rhcloud.com';
+$site = 'http://zerocms-perezkarjee.rhcloud.com';
+$host = 'zerocms-perezkarjee.rhcloud.com';
 
 // if on a private server use this
-// $site = gethostname();
+/* $protocol = 'http://';
+$host = gethostname();
+$site = $protocol . $host;
+*/
 ?>

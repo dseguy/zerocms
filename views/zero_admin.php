@@ -43,7 +43,7 @@ for($i = 1; $i <= $limit; $i++){
 			if($_SESSION['user_id'] == $row['user_id']){
 				echo '<li>' . htmlspecialchars($row['name']) . '</li>';
 				}else{
-					echo '<li><a href="zero_user_account.php?user_id=' . $row['user_id'] . '">' . htmlspecialchars($row['name']) . 
+					echo '<li><a href="'.$site.'/views/zero_user_account.php?user_id=' . $row['user_id'] . '">' . htmlspecialchars($row['name']) . 
 					'</a></li>';
 					}
 				}

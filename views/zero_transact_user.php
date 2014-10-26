@@ -44,13 +44,19 @@ if (isset($_REQUEST['action'])) {
         redirect('../index.php');
         break;
 
+		//if (filter_var($newslettermail, FILTER_VALIDATE_EMAIL)) {
+//$query = "INSERT INTO newslettermail(email)VALUES('$newslettermail')"; 
+//}
     case 'Create Account':
         $name = (isset($_POST['name'])) ? $_POST['name'] : '';
         $email = (isset($_POST['email'])) ? $_POST['email'] : '';
         $password_1 = (isset($_POST['password_1'])) ? $_POST['password_1'] : '';
         $password_2 = (isset($_POST['password_2'])) ? $_POST['password_2'] : '';
         $password = ($password_1 == $password_2) ? $password_1 : '';
-        if (!empty($name) && !empty($email) && !empty($password)) {
+		//check if not empty and validate email
+		if(!empty($name) && !empty($email) && !empty($password) && filter_var($email, FILTER_VALIDATE_EMAIL)
+		&& preg_match('/^[A-Za-z0-9]{1,255}$/', $name) && preg_match('/^[A-Za-z0-9]{6,32}$/', $password))
+		{
             $sql = 'INSERT INTO zero_users
                     (email, password, name)
                 VALUES
@@ -73,8 +79,10 @@ if (isset($_REQUEST['action'])) {
         $name = (isset($_POST['name'])) ? $_POST['name'] : '';
         $access_level = (isset($_POST['access_level'])) ? $_POST['access_level']
             : '';
+				//check if not empty and validate email
         if (!empty($user_id) && !empty($name) && !empty($email) &&
-            !empty($access_level) && !empty($user_id)) {
+            !empty($access_level) && filter_var($email, FILTER_VALIDATE_EMAIL) && preg_match('/^[A-Za-z0-9]{1,255}$/', $name))
+			{
             $sql = 'UPDATE `zero_users` SET
                     email = "' . mysql_real_escape_string($email, $dbx) . '",
                     name = "' . mysql_real_escape_string($name, $dbx) . '",
@@ -86,7 +94,7 @@ if (isset($_REQUEST['action'])) {
                     
             mysql_query($sql, $dbx) or die(mysql_error($dbx));
         }
-        redirect('zero_admin.php');
+        redirect(''.$site.'/views/zero_admin.php');
         break;
 
     case 'Recover Password':
@@ -105,14 +113,16 @@ if (isset($_REQUEST['action'])) {
             }
             mysql_free_result($result);
         }
-        redirect('zero_login.php');
+        redirect(''.$site.'/views/zero_login.php');
         break;
 
     case 'Change my info':
         session_start();
         $email = (isset($_POST['email'])) ? $_POST['email'] : '';
         $name = (isset($_POST['name'])) ? $_POST['name'] : '';
-        if (!empty($name) && !empty($email) && !empty($_SESSION['user_id']))
+		//check if not empty and validate email
+        if (!empty($name) && !empty($email) && !empty($_SESSION['user_id']) && filter_var($email, FILTER_VALIDATE_EMAIL)
+		&& preg_match('/^[A-Za-z0-9]{1,255}$/', $name))
         {
             $sql = 'UPDATE zero_users SET
                     email = "' . mysql_real_escape_string($email, $dbx) . '",
@@ -121,7 +131,7 @@ if (isset($_REQUEST['action'])) {
                     user_id = ' . $_SESSION['user_id'];
             mysql_query($sql, $dbx) or die(mysql_error($dbx));
         }
-        redirect('zero_cpanel.php');
+        redirect(''.$site.'/views/zero_cpanel.php');
         break;
     default:
         redirect('../index.php');
