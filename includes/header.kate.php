@@ -11,20 +11,22 @@ include 'config.kate.php';
 <html>
 <head>
 <title>ZeroCMS</title>
+<link rel="stylesheet" href="<?php echo $site;?>/css/flat-ui.css" type="text/css">
 <link rel="stylesheet" href="<?php echo $site;?>/css/style.css" type="text/css">
+<link rel="stylesheet" href="<?php echo $site;?>/css/boo0tstrap.css" type="text/css">
+<link rel="stylesheet" href="<?php echo $site;?>/css/bootstrap-responsive.css" type="text/css">
 </head>
 <body>
-<h1>ZeroCMS</h1>
-
+<header>
+<h1 class="demo-headline">ZeroCMS</h1>
+<div class="">
+<div class="nav-collapse collapse" id="nav-collapse-01">
 <?php
 if(isset($_SESSION['name'])){
 	echo '<p>You are currently logged in as: ' . $_SESSION['name'] . ' </p>';
 }
 ?>
-</div>
-<div id="navright">
 <form method="get" action="<?php echo $site;?>/views/zero_search.php">
-<div>
 <label for="search">Search</label>
 
 <?php
@@ -36,10 +38,10 @@ if(isset($_GET['keywords'])){
 ?>
 
 <input type="submit" value="search" />
-</div>
 </form>
 </div>
-<div id='navigation'>
+
+<div class='header-10'>
 <a href="<?php echo $site;?>/index.php">Articles</a>
 
 <?php
@@ -58,6 +60,8 @@ else {
 	echo ' | <a href="'.$site.'/views/zero_login.php">Login</a>';
 }
 ?>
-
 </div>
+</div>
+</div>
+</header>
 <div id="articles">
