@@ -5,10 +5,10 @@
 require '../includes/db.kate.php';
 include '../includes/header.kate.php';
 
-$dbx = mysql_connect(MYSQL_HOST, MYSQL_USER, MYSQL_PASSWORD) or
+$dbx = mysqli_connect(MYSQL_HOST, MYSQL_USER, MYSQL_PASSWORD) or
     die ('Unable to connect. Check your connection parameters.');
 
-mysql_select_db(MYSQL_DB, $dbx) or die(mysql_error($dbx));
+mysqli_select_db(MYSQL_DB, $dbx) or die(mysqli_error($dbx));
 
 $action = (isset($_GET['action'])) ? $_GET['action'] : '';
 $article_id = (isset($_GET['article_id']) && ctype_digit($_GET['article_id'])) ?
@@ -25,11 +25,11 @@ if ($action == 'edit' && !empty($article_id)) {
             zero_articles
         WHERE
             article_id = ' . $article_id;
-    $result = mysql_query($sql, $dbx) or die(mysql_error($dbx));
+    $result = mysqli_query($sql, $dbx) or die(mysqli_error($dbx));
 
-    $row = mysql_fetch_array($result);
+    $row = mysqli_fetch_array($result);
     extract($row);
-    mysql_free_result($result);
+    mysqli_free_result($result);
 }
 ?>
 <h2>Compose Article</h2>

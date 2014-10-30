@@ -5,9 +5,9 @@
 require '../includes/db.kate.php';
 require '../includes/functions.kate.php';
 
-$dbx = mysql_connect(MYSQL_HOST, MYSQL_USER, MYSQL_PASSWORD)
+$dbx = mysqli_connect(MYSQL_HOST, MYSQL_USER, MYSQL_PASSWORD)
 	or die('Fuck!,Unable To Connect.');
-mysql_select_db(MYSQL_DB, $dbx) or die(mysql_error($dbx));
+mysqli_select_db(MYSQL_DB, $dbx) or die(mysqli_error($dbx));
 
 include '../includes/header.kate.php';
 output_story($dbx, $_GET['article_id']);

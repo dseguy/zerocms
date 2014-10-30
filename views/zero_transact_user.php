@@ -5,10 +5,10 @@
 require_once '../includes/db.kate.php';
 require_once '../includes/zero_http_functions.kate.php';
 
-$dbx = mysql_connect(MYSQL_HOST, MYSQL_USER, MYSQL_PASSWORD) or
+$dbx = mysqli_connect(MYSQL_HOST, MYSQL_USER, MYSQL_PASSWORD) or
     die ('Unable to connect. Check your connection parameters.');
 
-mysql_select_db(MYSQL_DB, $dbx) or die(mysql_error($dbx));
+mysqli_select_db(MYSQL_DB, $dbx) or die(mysqli_error($dbx));
 
 if (isset($_REQUEST['action'])) {
 
@@ -21,19 +21,19 @@ if (isset($_REQUEST['action'])) {
             FROM
                 zero_users
             WHERE
-                email = "' . mysql_real_escape_string($email, $dbx) . '" AND
-                password = PASSWORD("' . mysql_real_escape_string($password,
+                email = "' . mysqli_real_escape_string($email, $dbx) . '" AND
+                password = PASSWORD("' . mysqli_real_escape_string($password,
                     $dbx) . '")';
-        $result = mysql_query($sql, $dbx) or die(mysql_error($dbx));
-        if (mysql_num_rows($result) > 0) {
-            $row = mysql_fetch_array($result);
+        $result = mysqli_query($sql, $dbx) or die(mysqli_error($dbx));
+        if (mysqli_num_rows($result) > 0) {
+            $row = mysqli_fetch_array($result);
             extract($row);
             session_start();
             $_SESSION['user_id'] = $user_id;
             $_SESSION['access_level'] = $access_level;
             $_SESSION['name'] = $name;
         }
-        mysql_free_result($result);
+        mysqli_free_result($result);
         redirect('../index.php');
         break;
 
@@ -60,13 +60,13 @@ if (isset($_REQUEST['action'])) {
             $sql = 'INSERT INTO zero_users
                     (email, password, name)
                 VALUES
-                ("' . mysql_real_escape_string($email, $dbx) . '",
-                PASSWORD("' . mysql_real_escape_string($password, $dbx) . '"), 
-                "' . mysql_real_escape_string($name, $dbx) . '")';
-            mysql_query($sql, $dbx) or die(mysql_error($dbx));
+                ("' . mysqli_real_escape_string($email, $dbx) . '",
+                PASSWORD("' . mysqli_real_escape_string($password, $dbx) . '"), 
+                "' . mysqli_real_escape_string($name, $dbx) . '")';
+            mysqli_query($sql, $dbx) or die(mysqli_error($dbx));
 
             session_start();
-            $_SESSION['user_id'] = mysql_insert_id($dbx);
+            $_SESSION['user_id'] = mysqli_insert_id($dbx);
             $_SESSION['access_level'] = 1;
             $_SESSION['name'] = $name;
         }
@@ -84,15 +84,15 @@ if (isset($_REQUEST['action'])) {
             !empty($access_level) && filter_var($email, FILTER_VALIDATE_EMAIL) && preg_match('/^[A-Za-z0-9]{1,255}$/', $name))
 			{
             $sql = 'UPDATE `zero_users` SET
-                    email = "' . mysql_real_escape_string($email, $dbx) . '",
-                    name = "' . mysql_real_escape_string($name, $dbx) . '",
-                    access_level = "' . mysql_real_escape_string($access_level, $dbx) . '"
+                    email = "' . mysqli_real_escape_string($email, $dbx) . '",
+                    name = "' . mysqli_real_escape_string($name, $dbx) . '",
+                    access_level = "' . mysqli_real_escape_string($access_level, $dbx) . '"
                 WHERE
                     user_id = ' . $user_id;
                  
       	
                     
-            mysql_query($sql, $dbx) or die(mysql_error($dbx));
+            mysqli_query($sql, $dbx) or die(mysqli_error($dbx));
         }
         redirect(''.$site.'/views/zero_admin.php');
         break;
@@ -101,9 +101,9 @@ if (isset($_REQUEST['action'])) {
         $email = (isset($_POST['email'])) ? $_POST['email'] : '';
         if (!empty($email)) {
             $sql = 'SELECT email FROM zero_users WHERE email="' .
-                mysql_real_escape_string($email, $dbx) . '"';
-            $result = mysql_query($sql, $dbx) or die(mysql_error($dbx));
-            if (mysql_num_rows($result) > 0) {
+                mysqli_real_escape_string($email, $dbx) . '"';
+            $result = mysqli_query($sql, $dbx) or die(mysqli_error($dbx));
+            if (mysqli_num_rows($result) > 0) {
                 $password = strtoupper(substr(sha1(time()), rand(0, 32), 8));
                 $subject = 'Comic site password reset';
                 $body = 'Forgot your password? we will send you a new one. ' . 
@@ -111,7 +111,7 @@ if (isset($_REQUEST['action'])) {
                 $body .= 'Your new password is: ' . $password;
                 mail($email, $subject, $body);
             }
-            mysql_free_result($result);
+            mysqli_free_result($result);
         }
         redirect(''.$site.'/views/zero_login.php');
         break;
@@ -125,11 +125,11 @@ if (isset($_REQUEST['action'])) {
 		&& preg_match('/^[A-Za-z0-9]{1,255}$/', $name))
         {
             $sql = 'UPDATE zero_users SET
-                    email = "' . mysql_real_escape_string($email, $dbx) . '",
-                    name = "' . mysql_real_escape_string($name, $dbx) . '"
+                    email = "' . mysqli_real_escape_string($email, $dbx) . '",
+                    name = "' . mysqli_real_escape_string($name, $dbx) . '"
                 WHERE
                     user_id = ' . $_SESSION['user_id'];
-            mysql_query($sql, $dbx) or die(mysql_error($dbx));
+            mysqli_query($sql, $dbx) or die(mysqli_error($dbx));
         }
         redirect(''.$site.'/views/zero_cpanel.php');
         break;

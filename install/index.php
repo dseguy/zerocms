@@ -6,10 +6,10 @@
 
 require '../includes/db.kate.php';
 
-$dbx = mysql_connect(MYSQL_HOST, MYSQL_USER, MYSQL_PASSWORD) or
+$dbx = mysqli_connect(MYSQL_HOST, MYSQL_USER, MYSQL_PASSWORD) or
 	die ('Fuck! unable to connect.');
 	
-mysql_select_db(MYSQL_DB, $dbx) or die(mysql_error($dbx));
+mysqli_select_db(MYSQL_DB, $dbx) or die(mysqli_error($dbx));
 
 $sql = 'CREATE TABLE IF NOT EXISTS zero_access_levels(
 		access_level 	TINYINT UNSIGNED 	NOT NULL AUTO_INCREMENT,
@@ -18,7 +18,7 @@ $sql = 'CREATE TABLE IF NOT EXISTS zero_access_levels(
 )
 
 ENGINE=MyISAM';
-mysql_query($sql, $dbx) or die(mysql_error($dbx));
+mysqli_query($sql, $dbx) or die(mysqli_error($dbx));
 
 $sql = 'INSERT IGNORE INTO zero_access_levels
 		(access_level, access_name)
@@ -26,7 +26,7 @@ $sql = 'INSERT IGNORE INTO zero_access_levels
 		(1, "User"),
 		(2, "Moderator"),
 		(3, "Administrator")';
-mysql_query($sql, $dbx) or die(mysql_error($dbx));
+mysqli_query($sql, $dbx) or die(mysqli_error($dbx));
 
 $sql = 'CREATE TABLE IF NOT EXISTS zero_users (
 		user_id 		INTEGER UNSIGNED 	NOT NULL AUTO_INCREMENT,
@@ -37,12 +37,12 @@ $sql = 'CREATE TABLE IF NOT EXISTS zero_users (
 		PRIMARY KEY(user_id)
 		)
 	ENGINE=MyISAM';
-mysql_query($sql, $dbx) or die(mysql_error($dbx));
+mysqli_query($sql, $dbx) or die(mysqli_error($dbx));
 $sql = 'INSERT IGNORE INTO zero_users
 		(user_id, email, password, name, access_level)
 		VALUES
 		(NULL, "admin@domain.com", PASSWORD("password"), "Administrator", 3)';
-	mysql_query($sql, $dbx) or die(mysql_error($dbx));
+	mysqli_query($sql, $dbx) or die(mysqli_error($dbx));
 	
 $sql = 'CREATE TABLE IF NOT EXISTS zero_articles (
 		article_id 		INTEGER UNSIGNED 	NOT NULL AUTO_INCREMENT,
@@ -59,7 +59,7 @@ $sql = 'CREATE TABLE IF NOT EXISTS zero_articles (
 		FULLTEXT INDEX (title, article_text)
 		)
 		ENGINE=MyISAM';
-	mysql_query($sql, $dbx) or die(mysql_error($dbx));
+	mysqli_query($sql, $dbx) or die(mysqli_error($dbx));
 	
 $sql = 'CREATE TABLE IF NOT EXISTS zero_comments (
 		comment_id		INTEGER UNSIGNED 	NOT NULL AUTO_INCREMENT,
@@ -73,6 +73,6 @@ $sql = 'CREATE TABLE IF NOT EXISTS zero_comments (
 		FOREIGN KEY(user_id) REFERENCES zero_users(user_id)
 )
 	ENGINE=MyISAM';
-mysql_query($sql, $dbx) or die(mysql_error($dbx));
+mysqli_query($sql, $dbx) or die(mysqli_error($dbx));
 echo 'Fuck Yeah! Successfull';
 ?>

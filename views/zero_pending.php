@@ -5,10 +5,10 @@
 require '../includes/db.kate.php';
 include '../includes/header.kate.php';
 
-$dbx = mysql_connect(MYSQL_HOST, MYSQL_USER, MYSQL_PASSWORD) or
+$dbx = mysqli_connect(MYSQL_HOST, MYSQL_USER, MYSQL_PASSWORD) or
     die ('Unable to connect. Check your connection parameters.');
 
-mysql_select_db(MYSQL_DB, $dbx) or die(mysql_error($dbx));
+mysqli_select_db(MYSQL_DB, $dbx) or die(mysqli_error($dbx));
 
 echo '<h2>Article Availability</h2>';
 
@@ -21,20 +21,20 @@ $sql = 'SELECT
         is_published = FALSE
     ORDER BY
         title ASC';
-$result = mysql_query($sql, $dbx) or die(mysql_error($dbx));
+$result = mysqli_query($sql, $dbx) or die(mysqli_error($dbx));
 
-if (mysql_num_rows($result) == 0) {
+if (mysqli_num_rows($result) == 0) {
     echo '<p><strong>No pending articles available.</strong></p>';
 } else {
     echo '<ul>';
-    while ($row = mysql_fetch_array($result)) {
+    while ($row = mysqli_fetch_array($result)) {
         echo '<li><a href="'.$site.'/views/zero_review_article.php?article_id=' .
             $row['article_id'] . '">' . htmlspecialchars($row['title']) .
             '</a> (' . date('F j, Y', $row['submit_date']) . ')</li>';
     }
     echo '</ul>';
 }
-mysql_free_result($result);
+mysqli_free_result($result);
 
 echo '<h3>Published Articles</h3>';
 $sql = 'SELECT
@@ -45,20 +45,20 @@ $sql = 'SELECT
         is_published = TRUE
     ORDER BY
         title ASC';
-$result = mysql_query($sql, $dbx) or die(mysql_error($dbx));
+$result = mysqli_query($sql, $dbx) or die(mysqli_error($dbx));
 
-if (mysql_num_rows($result) == 0) {
+if (mysqli_num_rows($result) == 0) {
     echo '<p><strong>No published articles available.</strong></p>';
 } else {
     echo '<ul>';
-    while ($row = mysql_fetch_array($result)) {
+    while ($row = mysqli_fetch_array($result)) {
         echo '<li><a href="'.$site.'/views/zero_review_article.php?article_id=' .
             $row['article_id'] . '">' . htmlspecialchars($row['title']) .
             '</a> (' . date('F j, Y', $row['publish_date']) . ')</li>';
     }
     echo '</ul>';
 }
-mysql_free_result($result);
+mysqli_free_result($result);
 
 include '../includes/footer.kate.php';
 ?>

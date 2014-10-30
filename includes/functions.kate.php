@@ -33,9 +33,9 @@ function output_story($dbx, $article_id, $preview_only = FALSE) {
             zero_articles a JOIN zero_users u ON a.user_id = u.user_id
         WHERE
             article_id = ' . $article_id;
-    $result = mysql_query($sql, $dbx) or die(mysql_error($dbx));
+    $result = mysqli_query($sql, $dbx) or die(mysqli_error($dbx));
 
-    if ($row = mysql_fetch_assoc($result)) {
+    if ($row = mysqli_fetch_assoc($result)) {
         extract($row);
         echo '<h2>' . htmlspecialchars($title) . '</h2>';
         echo '<p>By: ' . htmlspecialchars($name) . '</p>';
@@ -54,7 +54,7 @@ function output_story($dbx, $article_id, $preview_only = FALSE) {
             echo '<p>' . nl2br(htmlspecialchars($article_text)) . '</p>';
         }
     }
-    mysql_free_result($result);
+    mysqli_free_result($result);
 }
 
 //function to show comments
@@ -64,10 +64,10 @@ function show_comments($dbx, $article_id, $show_link = TRUE) {
     }
     $sql = 'SELECT is_published FROM zero_articles WHERE article_id = ' . 
         $article_id;
-    $result = mysql_query($sql, $dbx) or die(mysql_error($dbx));
-    $row = mysql_fetch_assoc($result);
+    $result = mysqli_query($sql, $dbx) or die(mysqli_error($dbx));
+    $row = mysqli_fetch_assoc($result);
     $is_published = $row['is_published'];
-    mysql_free_result($result);
+    mysqli_free_result($result);
     
     $sql = 'SELECT
             comment_text, UNIX_TIMESTAMP(comment_date) AS comment_date,
@@ -78,10 +78,10 @@ function show_comments($dbx, $article_id, $show_link = TRUE) {
             article_id = ' . $article_id . '
         ORDER BY
             comment_date DESC';
-    $result = mysql_query($sql, $dbx) or die(mysql_error($dbx));
+    $result = mysqli_query($sql, $dbx) or die(mysqli_error($dbx));
 
     if ($show_link) {
-        echo '<h3>' . mysql_num_rows($result) . ' Comments';
+        echo '<h3>' . mysqli_num_rows($result) . ' Comments';
         if (isset($_SESSION['user_id']) and $is_published) {
             echo ' - <a href="'.$site.'/views/zero_comment.php?article_id=' . $article_id .
                 '">Add one</a>';
@@ -89,9 +89,9 @@ function show_comments($dbx, $article_id, $show_link = TRUE) {
         echo '</h3>';
     }
 
-    if (mysql_num_rows($result)) {
+    if (mysqli_num_rows($result)) {
         echo '<div>';
-        while ($row = mysql_fetch_array($result)) {
+        while ($row = mysqli_fetch_array($result)) {
             extract($row);
             echo '<span>' . htmlspecialchars($name) . '</span>';
             echo '<span> (' . date('l F j, Y H:i', $comment_date) . ')</span>';
@@ -100,6 +100,6 @@ function show_comments($dbx, $article_id, $show_link = TRUE) {
         echo '</div>';
     }
     echo '<br>';
-    mysql_free_result($result);
+    mysqli_free_result($result);
 }
 ?>

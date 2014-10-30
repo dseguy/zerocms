@@ -6,9 +6,9 @@ require_once '../includes/db.kate.php';
 require_once '../includes/config.kate.php';
 require_once '../includes/zero_http_functions.kate.php';
 session_start();   
-  $dbx = mysql_connect(MYSQL_HOST,MYSQL_USER,MYSQL_PASSWORD) or
+  $dbx = mysqli_connect(MYSQL_HOST,MYSQL_USER,MYSQL_PASSWORD) or
       die ('Fuck! Unable to connect.');
-   mysql_select_db(MYSQL_DB,$dbx) or die(mysql_error($dbx));
+   mysqli_select_db(MYSQL_DB,$dbx) or die(mysqli_error($dbx));
   if (isset($_REQUEST['action']))
   {
   	switch ($_REQUEST['action'])
@@ -24,9 +24,9 @@ session_start();
                 VALUES
                     (' . $_SESSION['user_id'] . ',
                     "' . date('Y-m-d H:i:s') . '",
-                    "' . mysql_real_escape_string($title, $dbx) . '",
-                    "' . mysql_real_escape_string($article_text, $dbx) . '")';
-            mysql_query($sql, $dbx) or die(mysql_error($dbx));
+                    "' . mysqli_real_escape_string($title, $dbx) . '",
+                    "' . mysqli_real_escape_string($article_text, $dbx) . '")';
+            mysqli_query($sql, $dbx) or die(mysqli_error($dbx));
         }
         redirect('../index.php');
         break; 
@@ -44,8 +44,8 @@ session_start();
             : '';
         if (!empty($article_id) && !empty($title) && !empty($article_text)) {
             $sql = 'UPDATE zero_articles SET 
-                    title = "' . mysql_real_escape_string($title, $dbx) . '",
-                    article_text = "' . mysql_real_escape_string($article_text,
+                    title = "' . mysqli_real_escape_string($title, $dbx) . '",
+                    article_text = "' . mysqli_real_escape_string($article_text,
                         $dbx) . '",
                     submit_date = "' . date('Y-m-d H:i:s') . '"
                 WHERE
@@ -53,7 +53,7 @@ session_start();
             if (!empty($user_id)) {
                 $sql .= ' AND user_id = ' . $user_id;
             }
-            mysql_query($sql, $dbx) or die(mysql_error($dbx));
+            mysqli_query($sql, $dbx) or die(mysqli_error($dbx));
         }
         if (empty($user_id)) {
             redirect(''.$site.'/views/zero_pending.php');
@@ -71,7 +71,7 @@ session_start();
                     publish_date = "' . date('Y-m-d H:i:s') . '"
                 WHERE
                     article_id = ' . $article_id;
-            mysql_query($sql, $dbx) or die(mysql_error($dbx));
+            mysqli_query($sql, $dbx) or die(mysqli_error($dbx));
         }
         redirect(''.$site.'/views/zero_pending.php');
         break;
@@ -85,7 +85,7 @@ session_start();
                     publish_date = "0000-00-00 00:00:00"
                 WHERE
                     article_id = ' . $article_id;
-            mysql_query($sql, $dbx) or die(mysql_error($dbx));
+            mysqli_query($sql, $dbx) or die(mysqli_error($dbx));
         }
         redirect(''.$site.'/views/zero_pending.php');
         break;
@@ -100,7 +100,7 @@ session_start();
                 WHERE
                     a.article_id = ' . $article_id . ' AND
                     is_published = FALSE';
-            mysql_query($sql, $dbx) or die(mysql_error($dbx));
+            mysqli_query($sql, $dbx) or die(mysqli_error($dbx));
         }
         redirect(''.$site.'/views/zero_pending.php');
         break;
@@ -118,8 +118,8 @@ session_start();
                     (' . $article_id . ',
                     ' . $_SESSION['user_id'] . ',
                     "' . date('Y-m-d H:i:s') . '",
-                    "' . mysql_real_escape_string($comment_text, $dbx) . '")';
-            mysql_query($sql, $dbx) or die(mysql_error($dbx));
+                    "' . mysqli_real_escape_string($comment_text, $dbx) . '")';
+            mysqli_query($sql, $dbx) or die(mysqli_error($dbx));
         }
         redirect(''.$site.'/views/zero_view_article.php?article_id=' . $article_id);
         break;

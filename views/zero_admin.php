@@ -5,10 +5,10 @@
 require '../includes/db.kate.php';
 include '../includes/header.kate.php';
 
-$dbx = mysql_connect(MYSQL_HOST, MYSQL_USER, MYSQL_PASSWORD)
+$dbx = mysqli_connect(MYSQL_HOST, MYSQL_USER, MYSQL_PASSWORD)
 	or die('Fuck!, unable to connect.');
 
-mysql_select_db(MYSQL_DB, $dbx) or die(mysql_error($dbx));
+mysqli_select_db(MYSQL_DB, $dbx) or die(mysqli_error($dbx));
 
 $sql = 'SELECT
 		access_level, access_name
@@ -16,12 +16,12 @@ $sql = 'SELECT
 		zero_access_levels
 	ORDER BY
 		access_name ASC';
-$result = mysql_query($sql, $dbx) or die(mysql_error($dbx));
+$result = mysqli_query($sql, $dbx) or die(mysqli_error($dbx));
 $privileges = array();
-while ($row = mysql_fetch_assoc($result)){
+while ($row = mysqli_fetch_assoc($result)){
 	$privileges[$row['access_level']] = $row['access_name'];
 }
-mysql_free_result($result);
+mysqli_free_result($result);
 echo '<h2>Admin Panel</h2>';
 $limit = count($privileges);
 for($i = 1; $i <= $limit; $i++){
@@ -34,12 +34,12 @@ for($i = 1; $i <= $limit; $i++){
 			access_level = ' . $i . '
 		ORDER BY
 			name ASC';
-	$result = mysql_query($sql, $dbx) or die(mysql_error($dbx));
-	if(mysql_num_rows($result) == 0){
+	$result = mysqli_query($sql, $dbx) or die(mysqli_error($dbx));
+	if(mysqli_num_rows($result) == 0){
 		echo '<p><strong>There are no ' . $privileges[$i] . 'accounts' . 'registered</strong></p>';
 	}else{
 		echo '<ul>';
-		while ($row = mysql_fetch_assoc($result)){
+		while ($row = mysqli_fetch_assoc($result)){
 			if($_SESSION['user_id'] == $row['user_id']){
 				echo '<li>' . htmlspecialchars($row['name']) . '</li>';
 				}else{
@@ -49,7 +49,7 @@ for($i = 1; $i <= $limit; $i++){
 				}
 		echo '</ul>';
 	}
-	mysql_free_result($result);
+	mysqli_free_result($result);
 }
 require '../includes/footer.kate.php';
 ?>

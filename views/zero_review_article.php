@@ -6,10 +6,10 @@ require '../includes/db.kate.php';
 require '../includes/functions.kate.php';
 include '../includes/header.kate.php';
 
-$dbx = mysql_connect(MYSQL_HOST, MYSQL_USER, MYSQL_PASSWORD)
+$dbx = mysqli_connect(MYSQL_HOST, MYSQL_USER, MYSQL_PASSWORD)
 	or die('Fuck!, Unable To Connect.');
 	
-mysql_select_db(MYSQL_DB, $dbx) or die(mysql_error($dbx));
+mysqli_select_db(MYSQL_DB, $dbx) or die(mysqli_error($dbx));
 
 $article_id = (isset($_GET['article_id']) && ctype_digit($_GET['article_id'])) ? $_GET['article_id'] : '';
 echo '<h2>Article Review</h2>';
@@ -21,10 +21,10 @@ $sql = 'SELECT
 		zero_articles a INNER JOIN zero_users u ON a.user_id = u.user_id
 	WHERE
 		article_id = ' . $article_id;
-$result = mysql_query($sql, $dbx) or die(mysql_error());
-$row = mysql_fetch_array($result);
+$result = mysqli_query($sql, $dbx) or die(mysqli_error());
+$row = mysqli_fetch_array($result);
 extract($row);
-mysql_free_result($result);
+mysqli_free_result($result);
 
 if(!empty($date_published) and $is_published){
 	echo '<h4>Published: ' . date('l F j, Y H:i', $date_published) . '</h4>';

@@ -3,10 +3,10 @@
 // Project Site www.aas9.in/zerocms
 // Created March 2014
 require '../includes/db.kate.php';
-$dbx = mysql_connect(MYSQL_HOST, MYSQL_USER, MYSQL_PASSWORD) or
+$dbx = mysqli_connect(MYSQL_HOST, MYSQL_USER, MYSQL_PASSWORD) or
     die ('Fuck! Unable to connect.');
 
-mysql_select_db(MYSQL_DB, $dbx) or die(mysql_error($dbx));
+mysqli_select_db(MYSQL_DB, $dbx) or die(mysqli_error($dbx));
 
 $user_id = (isset($_GET['user_id']) && ctype_digit($_GET['user_id'])) ?
     $_GET['user_id'] : '';
@@ -22,10 +22,10 @@ if (empty($user_id)) {
             zero_users
         WHERE
             user_id=' . $user_id;
-    $result = mysql_query($sql, $dbx) or die(mysql_error($dbx));
-    $row = mysql_fetch_array($result);
+    $result = mysqli_query($sql, $dbx) or die(mysqli_error($dbx));
+    $row = mysqli_fetch_array($result);
     extract($row);
-    mysql_free_result($result);
+    mysqli_free_result($result);
 }
 
 include '../includes/header.kate.php';
@@ -59,9 +59,9 @@ if (isset($_SESSION['access_level']) && $_SESSION['access_level'] == 3)
             zero_access_levels
         ORDER BY
             access_level DESC';
-    $result = mysql_query($sql, $dbx) or die(mysql_error($dbx));
+    $result = mysqli_query($sql, $dbx) or die(mysqli_error($dbx));
 
-    while ($row = mysql_fetch_array($result)) {
+    while ($row = mysqli_fetch_array($result)) {
         echo '<input type="radio" id="acl_' . $row['access_level'] .
             '" name="access_level" value="' . $row['access_level'] . '"';
 
@@ -71,7 +71,7 @@ if (isset($_SESSION['access_level']) && $_SESSION['access_level'] == 3)
         echo '/> <label for="acl_' . $row['access_level'] . '">' .
             $row['access_name'] . '</label><br/>';
     }
-    mysql_free_result($result);
+    mysqli_free_result($result);
     echo '</td></tr>';
 }
 
