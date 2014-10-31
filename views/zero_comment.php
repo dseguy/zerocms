@@ -6,10 +6,10 @@ require '../includes/db.kate.php';
 require '../includes/functions.kate.php';
 include '../includes/header.kate.php';
 
-$dbx = mysqli_connect(MYSQL_HOST, MYSQL_USER, MYSQL_PASSWORD)
+$dbx = mysql_connect(MYSQL_HOST, MYSQL_USER, MYSQL_PASSWORD)
 	or die('Fuck!, Unable To Connect.');
 
-mysqli_select_db(MYSQL_DB, $dbx) or die(mysqli_error($dbx));
+mysql_select_db(MYSQL_DB, $dbx) or die(mysql_error($dbx));
 
 $article_id = (isset($_GET['article_id']) && ctype_digit($_GET['article_id'])) ? $_GET['article_id'] : '';
 output_story($dbx, $article_id);

@@ -25,9 +25,9 @@ ZeroCMS
 	for more info please visit http://www.aas9.in/zerocms
 	
 	--some important files--
-	css/style.css contains the stylesheet for ZeroCMS
+	static/css/style.css contains the stylesheet for ZeroCMS
 	'db.kate.php' contains the database config
-	'config.kate.php' contains the site URL config
+	'config.kate.php' contains the site URL & other configs
 	'install.kate.php' contains the sql queries for setting up the database tables
 	'header.kate.php' contains the header and title for ZeroCMS
 	'footer.kate.php' contains the footer

@@ -6,11 +6,11 @@ require '../includes/db.kate.php';
 require '../includes/functions.kate.php';
 include '../includes/header.kate.php';
 
-$dbx = mysqli_connect(MYSQL_HOST, MYSQL_USER, MYSQL_PASSWORD) or
+$dbx = mysql_connect(MYSQL_HOST, MYSQL_USER, MYSQL_PASSWORD) or
     die ('Unable to connect. Check your connection parameters.');
 
 
-mysqli_select_db(MYSQL_DB, $dbx) or die(mysqli_error($dbx));
+mysql_select_db(MYSQL_DB, $dbx) or die(mysql_error($dbx));
 
 $sql = 'SELECT
         email, name
@@ -18,11 +18,11 @@ $sql = 'SELECT
         zero_users
     WHERE
         user_id=' . $_SESSION['user_id'];
-$result = mysqli_query($sql, $dbx) or die(mysqli_error($dbx));
+$result = mysql_query($sql, $dbx) or die(mysql_error($dbx));
 
-$row = mysqli_fetch_array($result);
+$row = mysql_fetch_array($result);
 extract($row);
-mysqli_free_result($result);
+mysql_free_result($result);
 ?>
 <h2>User Info</h2>
 <form method="post" action="zero_transact_user.php">
@@ -53,13 +53,13 @@ $sql = 'SELECT
         user_id = ' . $_SESSION['user_id'] . '
     ORDER BY
         submit_date ASC';
-$result = mysqli_query($sql, $dbx) or die(mysqli_error($dbx));
+$result = mysql_query($sql, $dbx) or die(mysql_error($dbx));
 
-if (mysqli_num_rows($result) == 0) {
+if (mysql_num_rows($result) == 0) {
     echo '<p><strong>There are currently no pending articles.</strong></p>';
 } else {
     echo '<ul>';
-    while ($row = mysqli_fetch_array($result)) {
+    while ($row = mysql_fetch_array($result)) {
         echo '<li><a href="'.$site.'/views/zero_review_article.php?article_id=' .
             $row['article_id'] . '">' . htmlspecialchars($row['title']) .
             '</a> (submitted ' . date('F j, Y', $row['submit_date']) .
@@ -67,7 +67,7 @@ if (mysqli_num_rows($result) == 0) {
     }
     echo '</ul>';
 }
-mysqli_free_result($result);
+mysql_free_result($result);
 
 echo '<h2>Published Articles</h2>';
 
@@ -80,21 +80,21 @@ $sql = 'SELECT
         user_id = ' . $_SESSION['user_id'] . '
     ORDER BY
         publish_date ASC';
-$result = mysqli_query($sql, $dbx) or die(mysqli_error($dbx));
+$result = mysql_query($sql, $dbx) or die(mysql_error($dbx));
 
-if (mysqli_num_rows($result) == 0) {
+if (mysql_num_rows($result) == 0) {
     echo '<p><strong>There are currently no published articles.</strong></p>';
 } else {
     echo '<ul>';
-    while ($row = mysqli_fetch_array($result)) {
-        echo '<li><a href="'.$site.'/viewszero_review_article.php?article_id=' .
+    while ($row = mysql_fetch_array($result)) {
+        echo '<li><a href="'.$site.'/views/zero_review_article.php?article_id=' .
             $row['article_id'] . '">' . htmlspecialchars($row['title']) .
             '</a> (published ' . date('F j, Y', $row['publish_date']) .
             ')</li>';
     }
     echo '</ul>';
 }
-mysqli_free_result($result);
+mysql_free_result($result);
 
 include '../includes/footer.kate.php';
 ?>
