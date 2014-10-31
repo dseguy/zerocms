@@ -1,8 +1,12 @@
 ChangeLog
 	
-	version 1.0 released
+	version 1.0 released [stable]
 	date- 23 mar 2014
 
-	version 1.1 released
+	version 1.1 released [beta]
 	date- 25 oct 2014
 	changes- XSS Fix, Email Validation,Other Bug Fixes & a small change in architecture
+	
+	version 1.2 released [stable]
+	date- 30 oct 2014
+	changes- lots of bug fixes and some small changes too

@@ -11,7 +11,7 @@ include 'config.kate.php';
 <html>
 <head>
 <title>ZeroCMS</title>
-<link rel="stylesheet" href="<?php echo $site;?>/css/style.css" type="text/css">
+<link rel="stylesheet" href="<?php echo $site;?>/static/css/style.css" type="text/css">
 </head>
 <body>
 <h1>ZeroCMS</h1>

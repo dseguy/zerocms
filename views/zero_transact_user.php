@@ -94,7 +94,7 @@ if (isset($_REQUEST['action'])) {
                     
             mysql_query($sql, $dbx) or die(mysql_error($dbx));
         }
-        redirect(''.$site.'/views/zero_admin.php');
+        redirect('zero_admin.php');
         break;
 
     case 'Recover Password':
@@ -113,7 +113,7 @@ if (isset($_REQUEST['action'])) {
             }
             mysql_free_result($result);
         }
-        redirect(''.$site.'/views/zero_login.php');
+        redirect('zero_login.php');
         break;
 
     case 'Change my info':
@@ -131,7 +131,7 @@ if (isset($_REQUEST['action'])) {
                     user_id = ' . $_SESSION['user_id'];
             mysql_query($sql, $dbx) or die(mysql_error($dbx));
         }
-        redirect(''.$site.'/views/zero_cpanel.php');
+        redirect('zero_cpanel.php');
         break;
     default:
         redirect('../index.php');
