@@ -87,7 +87,7 @@ if (mysql_num_rows($result) == 0) {
 } else {
     echo '<ul>';
     while ($row = mysql_fetch_array($result)) {
-        echo '<li><a href="'.$site.'/viewszero_review_article.php?article_id=' .
+        echo '<li><a href="'.$site.'/views/zero_review_article.php?article_id=' .
             $row['article_id'] . '">' . htmlspecialchars($row['title']) .
             '</a> (published ' . date('F j, Y', $row['publish_date']) .
             ')</li>';

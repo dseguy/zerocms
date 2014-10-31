@@ -36,7 +36,7 @@ for($i = 1; $i <= $limit; $i++){
 			name ASC';
 	$result = mysql_query($sql, $dbx) or die(mysql_error($dbx));
 	if(mysql_num_rows($result) == 0){
-		echo '<p><strong>There are no ' . $privileges[$i] . 'accounts' . 'registered</strong></p>';
+		echo '<p><strong>There are no ' . $privileges[$i] . ' accounts' . ' registered</strong></p>';
 	}else{
 		echo '<ul>';
 		while ($row = mysql_fetch_assoc($result)){

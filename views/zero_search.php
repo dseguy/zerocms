@@ -9,7 +9,7 @@ $dbx = mysql_connect(MYSQL_HOST, MYSQL_USER, MYSQL_PASSWORD)
 	or die('Fuck!, Unable To Connect.');
 	
 mysql_select_db(MYSQL_DB, $dbx) or die(mysql_error($dbx));
-include '../header.kate.php';
+include '../includes/header.kate.php';
 
 $search = (isset($_GET['search'])) ? $_GET['search'] : '';
 
