@@ -1,6 +1,3 @@
-
-<div class="wrap">
-<div class="wrapper">
 	<!-- start menu-->
 	<div class="header">
 		<div class="menu1">
@@ -14,7 +11,7 @@
 				<li><a href="#">Web 2.0</a></li>
 				<li><a href="#">Tools</a></li>	
 			</ul>
-			<a href="#" id="pull"><img src="images/nav-icon.png" /></a>
+			<a href="#" id="pull"><img alt="nav icon" src="<?php echo $site;?>/static/images/nav-icon.png" /></a>
 		</nav>
 		<!-- end   navigation-->
 		 </div>
@@ -28,7 +25,7 @@
 					   </li>
 					   <li class="active"><a href="#"><span>Blog</span></a></li>
 					   <li class="last"><a href="#"><span>Contact</span></a></li>
-					   <div class="clear"></div>
+					   <li><div class="clear"></div></li>
 					</ul>
 				</div>
 			<div class="clear"></div>
@@ -37,11 +34,11 @@
 		<!-- start search-->
 		<div class="web_search">
 		 <div class="search">
-	        <form action="search.html">
+	        <form action="<?php echo $site;?>/search.php">
 	           <input type="text" value="Search" onFocus="this.value = '';" onBlur="if (this.value == '') {this.value = 'Search';}" class="text"/>
 	            <input type="submit" value=""/>
 	        </form>
-	        <div class="close"><img src="images/cross.png" /></div>
+	        <div class="close"><img alt="close icon" src="<?php echo $site;?>/static/images/cross.png" /></div>
 	    </div>
 	    <div class="srch"><button></button></div>
 		<script type="text/javascript">
@@ -62,7 +59,7 @@
 			      <li class="icon_1"><a href="#" target="_blank"> </a></li>
 			      <li class="icon_2"><a href="#" target="_blank"> </a></li>
 			      <li class="icon_3"><a href="#" target="_blank"> </a></li>
-			      <div class="clear"></div>
+			      <li><div class="clear"></div></li>
 		     </ul>
 	   	 </div>
 	   	 <!-- start login_box -->
@@ -93,5 +90,3 @@
 	    </div>	
 	   <div class="clear"></div>
 	</div>
-</div>
-</div>

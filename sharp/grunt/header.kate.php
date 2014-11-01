@@ -10,11 +10,11 @@
 <!-- google font -->
 <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700' rel='stylesheet' type='text/css'>
 <!-- style -->
-<link href="<?php echo $site;?>static/css/style.css" rel="stylesheet" type="text/css" media="all" />
-<link href="<?php echo $site;?>static/css/search.css" rel="stylesheet" type="text/css" media="all" />
+<link href="<?php echo $site;?>/static/css/style.css" rel="stylesheet" type="text/css" media="all" />
+<link href="<?php echo $site;?>/static/css/search.css" rel="stylesheet" type="text/css" media="all" />
 <!-- start nav -->
-<link href="<?php echo $site;?>static/css/nav.css" rel="stylesheet" type="text/css" media="all" />
-<script src="<?php echo $site;?>static/js/jquery.min.js"></script>
+<link href="<?php echo $site;?>/static/css/nav.css" rel="stylesheet" type="text/css" media="all" />
+<script src="<?php echo $site;?>/static/js/jquery.min.js"></script>
 	<script>
 		$(function() {
 			var pull 		= $('#pull');
@@ -35,23 +35,23 @@
 		});
 	</script>
 <!-- end nav -->
-<script src="<?php echo $site;?>static/js/login.js"></script>
-<script src="<?php echo $site;?>static/js/modernizr.custom.js"></script>
-<link href="<?php echo $site;?>static/css/slider.css" rel="stylesheet" type="text/css" media="all"/>
-<script type="text/javascript" src="<?php echo $site;?>static/js/jquery.nivo.slider.js"></script>
+<script src="<?php echo $site;?>/static/js/login.js"></script>
+<script src="<?php echo $site;?>/static/js/modernizr.custom.js"></script>
+<link href="<?php echo $site;?>/static/css/slider.css" rel="stylesheet" type="text/css" media="all"/>
+<script type="text/javascript" src="<?php echo $site;?>/static/js/jquery.nivo.slider.js"></script>
 <script type="text/javascript">
     $(window).load(function() {
         $('#slider').nivoSlider();
     });
     </script>
- <!----Calender -------->
+ <!--Calender -->
   <link rel="stylesheet" href="<?php echo $site;?>static/css/clndr.css" type="text/css" />
-  <script src="<?php echo $site;?>static/js/underscore-min.js"></script>
-  <script src= "<?php echo $site;?>static/js/moment-2.2.1.js"></script>
-  <script src="<?php echo $site;?>static/js/clndr.js"></script>
-  <script src="<?php echo $site;?>static/js/site.js"></script>
-  <!----End Calender -------->
- <script src="<?php echo $site;?>js/easyResponsiveTabs.js" type="text/javascript"></script>
+  <script src="<?php echo $site;?>/static/js/underscore-min.js"></script>
+  <script src= "<?php echo $site;?>/static/js/moment-2.2.1.js"></script>
+  <script src="<?php echo $site;?>/static/js/clndr.js"></script>
+  <script src="<?php echo $site;?>/static/js/site.js"></script>
+  <!--End Calender -->
+ <script src="<?php echo $site;?>/static/js/easyResponsiveTabs.js" type="text/javascript"></script>
 </head>
 <body>
 
