@@ -4,7 +4,7 @@
 // Created March 2014
 
 // if on a shared server
-$site = 'http://mywebsite.com'; //without a trailing slash
+$site = 'http://ec2-54-169-32-35.ap-southeast-1.compute.amazonaws.com/projects/zerocms'; //without a trailing slash
 $host = 'localhost/projects/zerocms';
 
 // if on a private server use this
@@ -12,4 +12,8 @@ $host = 'localhost/projects/zerocms';
 $host = gethostname();
 $site = $protocol . $host;
 */
+?>
+<?php
+$site_name = 'ZeroCMS';
+$title = 'ZeroCMS';
 ?>

@@ -2,7 +2,19 @@
 // (c)Perez Karjee(www.aas9.in)
 // Project Site www.aas9.in/zerocms
 // Created March 2014
-require '../includes/db.kate.php';
+require_once '../includes/db.kate.php';
+require_once '../includes/config.kate.php';
+include '../includes/header.kate.php';
+include '../includes/wrapper-start.php';
+include '../includes/menu.kate.php';
+?>
+
+<div class="content_bottom">
+<div class="grid_1_of_2 box">
+
+<?php
+
+
 $dbx = mysql_connect(MYSQL_HOST, MYSQL_USER, MYSQL_PASSWORD) or
     die ('Fuck! Unable to connect.');
 
@@ -28,30 +40,23 @@ if (empty($user_id)) {
     mysql_free_result($result);
 }
 
-include '../includes/header.kate.php';
-
 if (empty($user_id)) {
-    echo '<h1>Create Account</h1>';
+    echo '<h3>Create Account</h3>';
 } else {
-    echo '<h1>Modify Account</h1>';
+    echo '<h3>Modify Account</h3>';
 }
 ?>
+
+<div class="searh_form">
 <form method="post" action="zero_transact_user.php">
- <table>
-  <tr>
-   <td><label for="name">Full Name:</label></td>
-   <td><input type="text" id="name" name="name" maxlength="100"
-     value="<?php echo htmlspecialchars($name); ?>"/></td>
-  </tr><tr>
-   <td><label for="email">Email Address:</label></td>
-   <td><input type="text" id="email" name="email" maxlength="100"
-     value="<?php echo htmlspecialchars($email); ?>"/></td>
-  </tr>
+<input class="active" type="text" id="name" name="name" placeholder="Full Name" maxlength="120" value="<?php echo htmlspecialchars($name); ?>"/>
+<input class="active" type="text" id="email" name="email" maxlength="100" placeholder="Email" value="<?php echo htmlspecialchars($email); ?>"/>
+
 <?php
 
 if (isset($_SESSION['access_level']) && $_SESSION['access_level'] == 3)
 {
-    echo '<tr><td>Access Level</td><td>';
+    echo '<h4>Access Level</h4>';
 
     $sql = 'SELECT
             access_level, access_name
@@ -72,40 +77,31 @@ if (isset($_SESSION['access_level']) && $_SESSION['access_level'] == 3)
             $row['access_name'] . '</label><br/>';
     }
     mysql_free_result($result);
-    echo '</td></tr>';
+    echo '';
 }
 
 if (empty($user_id)) {
 ?>
-  <tr>
-   <td><label for="password_1">Password:(6-32 Characters)</label></td>
-   <td><input type="password" id="password_1" name="password_1" maxlength="50"/>
-   </td>
-  </tr><tr>
-   <td><label for="password_2">Confirm Password:</label></td>
-   <td><input type="password" id="password_2" name="password_2" maxlength="50"/>
-   </td>
-  </tr><tr>
-   <td> </td>
-   <td>
+
+   <input class="active" type="password" id="password_1" name="password_1" placeholder="Password:(6-32 Characters)" maxlength="32"/>
+   
+   <input class="active" type="password" id="password_2" name="password_2" placeholder="Confirm Password" maxlength="32"/>
     <input type="submit" name="action" value="Create Account"/>
-   </td>
-  </tr>
 <?php
 } else {
 ?>
-  <tr>
-   <td> </td>
-   <td>
     <input type="hidden" name="user_id" value="<?php echo $user_id; ?>"/>
+	<br>
     <input type="submit" name="action" value="Modify Account"/>
-   </td>
-  </tr>
 <?php
 }
 ?>
- </table>
 </form>
+</div>
+</div>
+</div>
 <?php
+//end
+include '../includes/wrapper-end.php';
 include '../includes/footer.kate.php';
 ?>
