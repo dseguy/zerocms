@@ -1,3 +1,0 @@
-ErrorDocument 400 /error_pages/400.php
-ErrorDocument 404 /error_pages/404.php
-ErrorDocument 500 /error_pages/500.php
