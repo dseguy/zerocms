@@ -15,6 +15,6 @@ ChangeLog
 	date- 3 nov 2014
 	changes- change in architecture, a complete new look, lot of bug fixes & security patches
 	
-	version 1.3.1 released [rc1]
+	version 1.3.1 released [RC]
 	date- 4 nov 2014
 	changes- bug fixes and small changes
