@@ -30,6 +30,8 @@ session_start();
         }
         redirect('../index.php');
         break; 
+		
+		
 	//edit article
     case 'Edit':
         redirect(''.$site.'/views/zero_compose.php?action=edit&article_id=' . $_POST['article_id']);
@@ -40,13 +42,11 @@ session_start();
         $article_id = (isset($_POST['article_id'])) ? $_POST['article_id'] : '';
         $user_id = (isset($_POST['user_id'])) ? $_POST['user_id'] : '';
         $title = (isset($_POST['title'])) ? $_POST['title'] : '';
-        $article_text = (isset($_POST['article_text'])) ? $_POST['article_text']
-            : '';
+        $article_text = (isset($_POST['article_text'])) ? $_POST['article_text'] : '';
         if (!empty($article_id) && !empty($title) && !empty($article_text)) {
             $sql = 'UPDATE zero_articles SET 
                     title = "' . mysql_real_escape_string($title, $dbx) . '",
-                    article_text = "' . mysql_real_escape_string($article_text,
-                        $dbx) . '",
+                    article_text = "' . mysql_real_escape_string($article_text, $dbx) . '",
                     submit_date = "' . date('Y-m-d H:i:s') . '"
                 WHERE
                     article_id = ' . $article_id;
@@ -94,9 +94,9 @@ session_start();
     case 'Delete':
         $article_id = (isset($_POST['article_id'])) ? $_POST['article_id'] : '';
         if (!empty($article_id)) {
-            $sql = 'DELETE a, c FROM
-                    zero_articles a LEFT JOIN zero_comments c ON
-                    a.article_id = c.article_id
+            $sql = 'DELETE FROM
+                    zero_articles
+					article_id
                 WHERE
                     a.article_id = ' . $article_id . ' AND
                     is_published = FALSE';
@@ -104,26 +104,7 @@ session_start();
         }
         redirect(''.$site.'/views/zero_pending.php');
         break;
-
-	//submit comment
-    case 'Submit Comment':
-        $article_id = (isset($_POST['article_id'])) ? $_POST['article_id'] : '';
-        $comment_text = (isset($_POST['comment_text'])) ?
-            $_POST['comment_text'] : '';
-        if (isset($_SESSION['user_id']) && !empty($article_id) &&
-            !empty($comment_text)) {
-            $sql = 'INSERT INTO zero_comments 
-                    (article_id, user_id, comment_date, comment_text)
-                VALUES
-                    (' . $article_id . ',
-                    ' . $_SESSION['user_id'] . ',
-                    "' . date('Y-m-d H:i:s') . '",
-                    "' . mysql_real_escape_string($comment_text, $dbx) . '")';
-            mysql_query($sql, $dbx) or die(mysql_error($dbx));
-        }
-        redirect(''.$site.'/views/zero_view_article.php?article_id=' . $article_id);
-        break;
-
+		
     default:
         redirect('../index.php');
     }

@@ -15,20 +15,14 @@ ZeroCMS
 	how to install ZeroCMS
 	1. download and extract files from the zip file into your host directory
 	2. create a mysql database
-	3. open 'db.kate.php' using a text editor and enter your database details & then open 'config.kate.php' and enter your site URL.
-	4. run yourdomain.com/install' {'yourdomain.com' is the url of your website or hostname} in a browser and then delete '/install' folder
+	3. run yourdomain.com/install' {'yourdomain.com' is the url of your website or hostname} in a browser,
+		the installer will guide you to the next steps
+	4. delete folder '/install'
 	5. now enter yourdomain.com in a browser, you can now login using the following credentials
 		email address- admin@domain.com
 		password- password
-	//you can change the heading and site title by editing this file 'header.kate.php'
 	-----------------------------------------------------------------------------------------------------------------
 	for more info please visit http://www.aas9.in/zerocms
 	
-	--some important files--
-	static/css/style.css contains the stylesheet for ZeroCMS
-	'includes/db.kate.php' contains the database config
-	'includes/config.kate.php' contains the site URL & other configs
-	'install/install.kate.php' contains the sql queries for setting up the database tables
-	'includes/header.kate.php' contains the header and title for ZeroCMS
-	'includes/footer.kate.php' contains the footer
-	'includes/functions.kate.php' contains all the necessary functions that are required by ZeroCMS
+	
+	Responsive HTML5 FlatUI template by w3layouts- http://w3layouts.com

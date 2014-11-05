@@ -2,13 +2,24 @@
 // (c)Perez Karjee(www.aas9.in)
 // Project Site www.aas9.in/zerocms
 // Created March 2014
-require '../includes/db.kate.php';
+require_once '../includes/db.kate.php';
+require_once '../includes/config.kate.php';
 include '../includes/header.kate.php';
+include '../includes/wrapper-start.php';
+include '../includes/menu.kate.php';
+?>
+<div class="content_bottom">
 
+			<div class="grid_1_of_2 box">
+<?php
 $dbx = mysql_connect(MYSQL_HOST, MYSQL_USER, MYSQL_PASSWORD)
 	or die('Fuck!, unable to connect.');
 
 mysql_select_db(MYSQL_DB, $dbx) or die(mysql_error($dbx));
+
+if(!isset($_SESSION['user_id'])){ //if not logged in
+echo '<a href="zero_login.php"><h3 align="center">Click Here To Login</h3></a>';
+} elseif(isset($_SESSION['user_id']) && ($_SESSION['access_level'] >2)) {
 
 $sql = 'SELECT
 		access_level, access_name
@@ -22,10 +33,10 @@ while ($row = mysql_fetch_assoc($result)){
 	$privileges[$row['access_level']] = $row['access_name'];
 }
 mysql_free_result($result);
-echo '<h2>Admin Panel</h2>';
+echo '<h3>Admin Panel</h3>';
 $limit = count($privileges);
 for($i = 1; $i <= $limit; $i++){
-	echo '<h3>' . $privileges[$i] . '</h3>';
+	echo '<h5>' . $privileges[$i] . '</h5>';
 	$sql = 'SELECT
 			user_id, name
 		FROM
@@ -51,5 +62,14 @@ for($i = 1; $i <= $limit; $i++){
 	}
 	mysql_free_result($result);
 }
-require '../includes/footer.kate.php';
+} else {
+echo '<h3 align="center">hmm...</h3><meta http-equiv="refresh" content="1;url=zero_cpanel.php" />';
+}
+?>
+</div>
+	</div>
+<?php
+//end
+include '../includes/wrapper-end.php';
+include '../includes/footer.kate.php';
 ?>
