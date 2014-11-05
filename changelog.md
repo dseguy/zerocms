@@ -18,3 +18,7 @@ ChangeLog
 	version 1.3.1 released [RC]
 	date- 4 nov 2014
 	changes- bug fixes and small changes
+	
+	version 1.3.2 released [RC]
+	date- 4 nov 2014
+	changes- bug fixes, small changes & disqus comments integration 

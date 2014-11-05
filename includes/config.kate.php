@@ -4,7 +4,7 @@
 // Created March 2014
 
 // enter site URL/domain here
-$site = 'http://ec2-54-169-32-35.ap-southeast-1.compute.amazonaws.com/projects/zerocms'; //without a trailing slash
+$site = 'http://mywebsite.com'; //without a trailing slash
 
 // if on a private server use this
 /* $protocol = 'http://';
