@@ -55,16 +55,16 @@ if(empty($article_id)){
 echo '<input type="hidden" name="user_id" value="' . $_SESSION['user_id'] . '"/>'; 
     echo '<input type="submit" name="action" value="Submit New Article"/>';}
 else{	
-echo '<input type="hidden" name="article_id" value="' . $article_id . '"/>';
+echo '<input type="hidden" name="article_id" value="'.$article_id.'"/>';
     echo '<input type="submit" name="action" "value="Save Changes"/>';
-}
 }
 
 //end table
-echo '</td></tr></table></form><br></div></div></div>';
+echo '</td></tr></table></form><br></div>';
+}
 ?>
 
-
+</div></div>
 <?php
 //end
 include '../includes/wrapper-end.php';

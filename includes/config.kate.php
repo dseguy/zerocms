@@ -3,9 +3,8 @@
 // Project Site www.aas9.in/zerocms
 // Created March 2014
 
-// if on a shared server
+// enter site URL/domain here
 $site = 'http://ec2-54-169-32-35.ap-southeast-1.compute.amazonaws.com/projects/zerocms'; //without a trailing slash
-$host = 'localhost/projects/zerocms';
 
 // if on a private server use this
 /* $protocol = 'http://';
@@ -14,6 +13,10 @@ $site = $protocol . $host;
 */
 ?>
 <?php
+//enter site name
 $site_name = 'ZeroCMS';
-$title = 'ZeroCMS';
+$title = $site_name;
+
+//enter disqus comments shortname (more info here- https://help.disqus.com/customer/portal/articles/466208-what-s-a-shortname-)
+$disqus_comments_name = 'zerocms';
 ?>

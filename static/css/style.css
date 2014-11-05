@@ -1201,6 +1201,14 @@ h2.style{
 	border-bottom: 1px solid #dddddd;
 }
 
+.grid_1_of_2.box h6{
+	font-size: 1em;
+	color: #464F54;
+	font-weight:600;
+	padding:20px;
+	border-bottom: 1px solid #dddddd;
+}
+
 .grid_1_of_2.box a{
 	font-size: 1em;
 	color: #EA6060;
