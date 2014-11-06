@@ -22,7 +22,7 @@ require_once 'config.kate.php';
 <!-- style -->
 <link href="<?php echo $site;?>/static/css/style.css" rel="stylesheet" type="text/css" media="all" />
 <script src="<?php echo $site;?>/static/js/jquery.min.js"></script>
-<link href="<?php? echo $site; ?>/static/css/search.css" rel="stylesheet" type="text/css" media="all" />
+<link href="<?php echo $site; ?>/static/css/search.css" rel="stylesheet" type="text/css" media="all" />
 	<script>
 		$(function() {
 			var pull 		= $('#pull');
