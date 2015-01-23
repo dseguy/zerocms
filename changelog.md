@@ -21,4 +21,4 @@ ChangeLog
 	
 	version 1.3.3 released [stable] [final for PHP]
 	date- 23 jan 2015
-	changes- minor bug fixes,
+	changes- minor bug fixes
