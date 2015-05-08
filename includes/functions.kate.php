@@ -38,8 +38,8 @@ function output_story($dbx, $article_id, $preview_only = FALSE) {
 
     if ($row = mysql_fetch_assoc($result)) {
         extract($row);
-        echo '<br><h3>' . htmlspecialchars($title) . '</h3>';
-        echo '<p>By: ' . htmlspecialchars($name) . '</p>';
+        echo '<br><h3>' , htmlspecialchars($title) , '</h3>';
+        echo '<p>By: ' , htmlspecialchars($name) , '</p>';
         echo '<p>';
         if ($row['is_published']) {
             echo date('F j, Y', $publish_date);
@@ -49,12 +49,12 @@ function output_story($dbx, $article_id, $preview_only = FALSE) {
         }
         echo '</p>';
         if ($preview_only) {
-        echo '<p>' . nl2br(htmlspecialchars(trim_body($article_text))) . '</p>';
+        echo '<p>' , nl2br(htmlspecialchars(trim_body($article_text))) , '</p>';
 		echo '<p>';
-        echo '<a href="zero_view_article.php?article_id='.$article_id.'">Read Full Story</a>';
+        echo '<a href="zero_view_article.php?article_id=',$article_id,'">Read Full Story</a>';
 		echo '</p>';
         } else {
-            echo '<p>' . nl2br(htmlspecialchars($article_text)) . '</p>';
+            echo '<p>' , nl2br(htmlspecialchars($article_text)) , '</p>';
         }
     }
     mysql_free_result($result);
@@ -78,8 +78,8 @@ function output_story_index($dbx, $article_id, $preview_only = FALSE) {
 
     if ($row = mysql_fetch_assoc($result)) {
         extract($row);
-        echo '<br><h3>' . htmlspecialchars($title) . '</h3>';
-        echo '<p>By: ' . htmlspecialchars($name) . '</p>';
+        echo '<br><h3>' , htmlspecialchars($title) , '</h3>';
+        echo '<p>By: ' , htmlspecialchars($name) , '</p>';
         echo '<p>';
         if ($row['is_published']) {
             echo date('F j, Y', $publish_date);
@@ -89,12 +89,12 @@ function output_story_index($dbx, $article_id, $preview_only = FALSE) {
         }
         echo '</p>';
         if ($preview_only) {
-        echo '<p>' . nl2br(htmlspecialchars(trim_body($article_text))) . '</p>';
+        echo '<p>' , nl2br(htmlspecialchars(trim_body($article_text))) , '</p>';
 		echo '<p>';
-        echo '<a href="views/zero_view_article.php?article_id='.$article_id.'">Read Full Story</a>';
+        echo '<a href="views/zero_view_article.php?article_id=',$article_id,'">Read Full Story</a>';
 		echo '</p>';
         } else {
-            echo '<p>' . nl2br(htmlspecialchars($article_text)) . '</p>';
+            echo '<p>' , nl2br(htmlspecialchars($article_text)) , '</p>';
         }
     }
     mysql_free_result($result);
@@ -119,8 +119,8 @@ function output_story_review($dbx, $article_id, $preview_only = FALSE) {
 
     if ($row = mysql_fetch_assoc($result)) {
         extract($row);
-        echo '<br><h4>' . htmlspecialchars($title) . '</h4>';
-        echo '<p>By: ' . htmlspecialchars($name) . '</p>';
+        echo '<br><h4>' , htmlspecialchars($title) , '</h4>';
+        echo '<p>By: ' , htmlspecialchars($name) , '</p>';
         echo '<p>';
         if ($row['is_published']) {
             echo date('F j, Y', $publish_date);
@@ -130,12 +130,12 @@ function output_story_review($dbx, $article_id, $preview_only = FALSE) {
         }
         echo '</p>';
         if ($preview_only) {
-        echo '<p>' . nl2br(htmlspecialchars(trim_body($article_text))) . '</p>';
+        echo '<p>' , nl2br(htmlspecialchars(trim_body($article_text))) , '</p>';
 		echo '<p>';
-        echo '<a href="zero_view_article.php?article_id='.$article_id.'">Read Full Story</a>';
+        echo '<a href="zero_view_article.php?article_id=',$article_id,'">Read Full Story</a>';
 		echo '</p>';
         } else {
-            echo '<p>' . nl2br(htmlspecialchars($article_text)) . '</p>';
+            echo '<p>' , nl2br(htmlspecialchars($article_text)) , '</p>';
         }
     }
     mysql_free_result($result);

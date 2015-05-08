@@ -52,8 +52,8 @@ if (empty($user_id)) {
 
 echo '<div class="searh_form">
 <form method="post" action="zero_transact_user.php">
-<input class="active" type="text" id="name" name="name" placeholder="Full Name" maxlength="120" value="'.$name.'"/>
-<input class="active" type="text" id="email" name="email" maxlength="100" placeholder="Email" value="'.$email.'"/>';
+<input class="active" type="text" id="name" name="name" placeholder="Full Name" maxlength="120" value="',$name,'"/>
+<input class="active" type="text" id="email" name="email" maxlength="100" placeholder="Email" value="',$email,'"/>';
 
 
 if (isset($_SESSION['access_level']) && $_SESSION['access_level'] == 3)
@@ -69,14 +69,14 @@ if (isset($_SESSION['access_level']) && $_SESSION['access_level'] == 3)
     $result = mysql_query($sql, $dbx) or die(mysql_error($dbx));
 
     while ($row = mysql_fetch_array($result)) {
-        echo '<input type="radio" id="acl_' . $row['access_level'] .
-            '" name="access_level" value="' . $row['access_level'] . '"';
+        echo '<input type="radio" id="acl_' , $row['access_level'] ,
+            '" name="access_level" value="' , $row['access_level'] , '"';
 
         if ($row['access_level'] == $access_level) {
             echo ' checked="checked"';
         }
-        echo '/> <label for="acl_' . $row['access_level'] . '">' .
-            $row['access_name'] . '</label><br/>';
+        echo '/> <label for="acl_' , $row['access_level'] , '">' ,
+            $row['access_name'] , '</label><br/>';
     }
     mysql_free_result($result);
     echo '';
@@ -91,7 +91,7 @@ echo '<input class="active" type="password" id="password_2" name="password_2" pl
 echo  '<input type="submit" name="action" value="Create Account"/>';
 
 } else {
-    echo '<input type="hidden" name="user_id" value="'.$user_id.'"/>';
+    echo '<input type="hidden" name="user_id" value="',$user_id,'"/>';
 	echo '<br>';
     echo '<input type="submit" name="action" value="Modify Account"/>';
 }

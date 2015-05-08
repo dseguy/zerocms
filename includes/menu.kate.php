@@ -13,18 +13,18 @@
 				<li><a href="<?php echo $site; ?>/views/zero_list_articles.php">Articles</a></li>
 				<?php //compose
 						if(isset($_SESSION['user_id'])){
-							echo '<li><a href=" '.$site.'/views/zero_compose.php">Compose</a></li>';
+							echo '<li><a href=" ',$site,'/views/zero_compose.php">Compose</a></li>';
 								
 					    //review, if access level>1
 					   if($_SESSION['access_level'] > 1){
-							echo '<li><a href=" '.$site.'/views/zero_pending.php">Review</a></li>';} 
+							echo '<li><a href=" ',$site,'/views/zero_pending.php">Review</a></li>';} 
 							
 					    //admin, if access level>2
 						if($_SESSION['access_level'] > 2){
-							echo '<li><a href=" '.$site.'/views/zero_admin.php">Admin</a></li>';}
+							echo '<li><a href=" ',$site,'/views/zero_admin.php">Admin</a></li>';}
 							
 						//cpanel , if access level>2
-						echo '<li><a href=" '.$site.'/views/zero_cpanel.php">Kontrol Panel</a></li>';} 
+						echo '<li><a href=" ',$site,'/views/zero_cpanel.php">Kontrol Panel</a></li>';} 
 			?>
 			</ul>
 			<a href="#" id="pull"><img alt="nav icon" src="<?php echo $site;?>/static/images/nav-icon.png" /></a>
@@ -43,18 +43,18 @@
 					   
 						<?php //compose if logged in
 						if(isset($_SESSION['user_id'])){
-							echo '<li class="last"><a href=" '.$site.'/views/zero_compose.php"><span>Compose</span></a></li>';
+							echo '<li class="last"><a href=" ',$site,'/views/zero_compose.php"><span>Compose</span></a></li>';
 								
 					    //review, if access level>1
 					   if($_SESSION['access_level'] > 1){
-							echo '<li class="last"><a href=" '.$site.'/views/zero_pending.php"><span>Review</span></a></li>';} 
+							echo '<li class="last"><a href=" ',$site,'/views/zero_pending.php"><span>Review</span></a></li>';} 
 							
 					    //admin, if access level>2
 						if($_SESSION['access_level'] > 2){
-							echo '<li class="last"><a href=" '.$site.'/views/zero_admin.php"><span>Admin</span></a></li>';}
+							echo '<li class="last"><a href=" ',$site,'/views/zero_admin.php"><span>Admin</span></a></li>';}
 							
 						//cpanel , if access level>2
-						echo '<li class="last"><a href=" '.$site.'/views/zero_cpanel.php"><span>Kontrol Panel</span></a></li>';} 
+						echo '<li class="last"><a href=" ',$site,'/views/zero_cpanel.php"><span>Kontrol Panel</span></a></li>';} 
 						?>
 							
 							
@@ -71,7 +71,7 @@
 	           <input id="search" name="search" type="text" value="Search" onFocus="this.value = '';" onBlur="if (this.value == '') {this.value = 'Search';}" class="text"/>
 	    <?php
 		
-	if(isset($_GET['keywords'])){echo ' value="' . htmlspecialchars($_GET['keywords']) . '" ';}
+	if(isset($_GET['keywords'])){echo ' value="' , htmlspecialchars($_GET['keywords']) , '" ';}
 		
 		?>
 				<input type="submit" value=""/>
@@ -113,13 +113,13 @@
 if(isset($_SESSION['user_id'])){
 //logout form on menu
 echo '<form id="loginForm"><span>';
-echo '<a href="'.$site.'/views/zero_transact_user.php?action=Logout">Logout</a>';
+echo '<a href="',$site,'/views/zero_transact_user.php?action=Logout">Logout</a>';
 echo '</span></form>';
 }
 else {
 	
 	//login form on menu
-	echo '<form id="loginForm" method="post" action="'.$site.'/views/zero_transact_user.php">';
+	echo '<form id="loginForm" method="post" action="',$site,'/views/zero_transact_user.php">';
 	echo '<fieldset id="body"><fieldset>';
 	echo '<label for="email">Email Address</label>';
 	echo '<input type="text" name="email" id="email" maxlength="120">';
@@ -129,8 +129,8 @@ else {
 	echo '</fieldset>';
 	echo '<input type="submit" name="action" id="login" value="Login">';
 	echo '</fieldset>';
-	echo '<span><a href="'.$site.'/views/zero_forgot_password.php">Forgot your password?</a></span>';
-	echo '<span><a href="'.$site.'/views/zero_user_account.php">Register</a></span>';
+	echo '<span><a href="',$site,'/views/zero_forgot_password.php">Forgot your password?</a></span>';
+	echo '<span><a href="',$site,'/views/zero_user_account.php">Register</a></span>';
 	echo '</form>';
 	
 	

@@ -47,7 +47,7 @@ extract($row);
 mysql_free_result($result);
 
 if(!empty($date_published) and $is_published){
-	echo '<h4>Published: ' . date('l F j, Y H:i', $date_published) . '</h4>';
+	echo '<h4>Published: ' , date('l F j, Y H:i', $date_published) , '</h4>';
 }
 
 echo'<br><div class="searh_form"><form method="post" action="zero_transact_article.php"><div><input type="submit" name="action" value="Edit"/>';

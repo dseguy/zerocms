@@ -34,8 +34,8 @@ mysql_free_result($result);
 
 echo '<h3>User Info</h3>';
 echo '<div class="searh_form"><form method="post" action="zero_transact_user.php">';
-echo '<input type="text" id="name" name="name" maxlength="100" value="'.$name.'"/></td>';
-echo '<input type="text" id="email" name="email" maxlength="100" value="'.$email.'"/></td>';
+echo '<input type="text" id="name" name="name" maxlength="100" value="',$name,'"/></td>';
+echo '<input type="text" id="email" name="email" maxlength="100" value="',$email,'"/></td>';
 echo '<input type="submit" name="action" value="Change my info"/>';
 echo '</form></div>';
 
@@ -57,8 +57,8 @@ if (mysql_num_rows($result) == 0) {
 } else {
     echo '<ul>';
     while ($row = mysql_fetch_array($result)) {
-        echo '<li><a href="'.$site.'/views/zero_review_article.php?article_id=' .
-            $row['article_id'] . '">' . htmlspecialchars($row['title']) .
+        echo '<li><a href="',$site,'/views/zero_review_article.php?article_id=' ,
+            $row['article_id'] , '">' , htmlspecialchars($row['title']) ,
             '</a> (submitted ' . date('F j, Y', $row['submit_date']) .
             ')</li>';
     }
@@ -84,8 +84,8 @@ if (mysql_num_rows($result) == 0) {
 } else {
     echo '<ul>';
     while ($row = mysql_fetch_array($result)) {
-        echo '<li><a href="'.$site.'/views/zero_review_article.php?article_id=' .
-            $row['article_id'] . '">' . htmlspecialchars($row['title']) .
+        echo '<li><a href="',$site,'/views/zero_review_article.php?article_id=' ,
+            $row['article_id'] , '">' , htmlspecialchars($row['title']) ,
             '</a> (published ' . date('F j, Y', $row['publish_date']) .
             ')</li>';
     }

@@ -36,7 +36,7 @@ mysql_free_result($result);
 echo '<h3>Admin Panel</h3>';
 $limit = count($privileges);
 for($i = 1; $i <= $limit; $i++){
-	echo '<h5>' . $privileges[$i] . '</h5>';
+	echo '<h5>' , $privileges[$i] , '</h5>';
 	$sql = 'SELECT
 			user_id, name
 		FROM
@@ -47,14 +47,14 @@ for($i = 1; $i <= $limit; $i++){
 			name ASC';
 	$result = mysql_query($sql, $dbx) or die(mysql_error($dbx));
 	if(mysql_num_rows($result) == 0){
-		echo '<p><strong>There are no ' . $privileges[$i] . ' accounts' . ' registered</strong></p>';
+		echo '<p><strong>There are no ' , $privileges[$i] , ' accounts' , ' registered</strong></p>';
 	}else{
 		echo '<ul>';
 		while ($row = mysql_fetch_assoc($result)){
 			if($_SESSION['user_id'] == $row['user_id']){
-				echo '<li>' . htmlspecialchars($row['name']) . '</li>';
+				echo '<li>' , htmlspecialchars($row['name']) , '</li>';
 				}else{
-					echo '<li><a href="'.$site.'/views/zero_user_account.php?user_id=' . $row['user_id'] . '">' . htmlspecialchars($row['name']) . 
+					echo '<li><a href="',$site,'/views/zero_user_account.php?user_id=' , $row['user_id'] , '">' , htmlspecialchars($row['name']) , 
 					'</a></li>';
 					}
 				}

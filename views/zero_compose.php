@@ -49,13 +49,13 @@ echo '<div class="searh_form">';
 echo '<h3>Compose Article</h3>';
 echo '<form method="post" action="zero_transact_article.php">';
 echo '<input type="text" id="title" name="title" placeholder="Title" class="active" maxlength="250"/>';
-echo '<textarea id="article_text" name="article_text" placeholder="Text" rows="20" cols="60">'.$article_text.'</textarea><br/>';
+echo '<textarea id="article_text" name="article_text" placeholder="Text" rows="20" cols="60">',$article_text,'</textarea><br/>';
 
 if(empty($article_id)){
-echo '<input type="hidden" name="user_id" value="' . $_SESSION['user_id'] . '"/>'; 
+echo '<input type="hidden" name="user_id" value="' , $_SESSION['user_id'] , '"/>'; 
     echo '<input type="submit" name="action" value="Submit New Article"/>';}
 else{	
-echo '<input type="hidden" name="article_id" value="'.$article_id.'"/>';
+echo '<input type="hidden" name="article_id" value="',$article_id,'"/>';
     echo '<input type="submit" name="action" "value="Save Changes"/>';
 }
 
